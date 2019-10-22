@@ -15,6 +15,7 @@ public class Event
 	private Set<User> admins;
 	
 	
+	
 	public Event() {
 		super();
 	}
