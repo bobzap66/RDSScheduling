@@ -21,19 +21,7 @@ public class Event
 	}
 
 
-	public Event(String name, String startdate, String enddate, String description, int maxattendees, String location,
-			Orginization group, Set<User> attendees, Set<User> admins) {
-		super();
-		this.name = name;
-		this.startdate = startdate;
-		this.enddate = enddate;
-		this.description = description;
-		this.maxattendees = maxattendees;
-		this.location = location;
-		this.group = group;
-		this.attendees = attendees;
-		this.admins = admins;
-	}
+
 
 
 	public String getName() {

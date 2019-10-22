@@ -19,15 +19,7 @@ public class User
 
 
 
-	public User(int id, String name, String password, String email, Set<Orginization> subscriptions) 
-	{
-		super();
-		this.id = id;
-		this.name = name;
-		this.password = password;
-		this.email = email;
-		this.subscriptions = subscriptions;
-	}
+
 
 
 

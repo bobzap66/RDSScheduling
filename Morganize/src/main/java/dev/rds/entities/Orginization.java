@@ -17,16 +17,7 @@ public class Orginization
 	}
 
 
-	public Orginization(int id, String name, String description, Set<String> tags, Set<Event> events,
-			Set<User> members) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.tags = tags;
-		this.events = events;
-		this.members = members;
-	}
+
 
 
 	public int getId() {
