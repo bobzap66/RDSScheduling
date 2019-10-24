@@ -2,28 +2,52 @@ package dev.rds.entities;
 
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "organization")
 public class Organization 
 {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "o_id")
 	private int id;
+	
+	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "description")
 	private String description;
-	private Set<String> tags;
+	
+	@ManyToMany(mappedBy = "organizations")
+	private Set<Tag> tags;
+	
+	@OneToMany(mappedBy = "organization")
 	private Set<Event> events;
-	private Set<User> members;
+	
+	@OneToMany(mappedBy = "organization")
+	private Set<Membership> memberships;
 	
 	public Organization() {
 		super();
 	}
 
-	public Organization(int id, String name, String description, Set<String> tags, Set<Event> events,
-			Set<User> members) {
+	public Organization(int id, String name, String description, Set<Tag> tags, Set<Event> events,
+			Set<Membership> memberships) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.tags = tags;
 		this.events = events;
-		this.members = members;
+		this.memberships = memberships;
 	}
 
 	public int getId() {
@@ -50,11 +74,11 @@ public class Organization
 		this.description = description;
 	}
 
-	public Set<String> getTags() {
+	public Set<Tag> getTags() {
 		return tags;
 	}
 
-	public void setTags(Set<String> tags) {
+	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
 	}
 
@@ -66,18 +90,18 @@ public class Organization
 		this.events = events;
 	}
 
-	public Set<User> getMembers() {
-		return members;
+	public Set<Membership> getMemberships() {
+		return memberships;
 	}
 
-	public void setMembers(Set<User> members) {
-		this.members = members;
+	public void setMemberships(Set<Membership> memberships) {
+		this.memberships = memberships;
 	}
 
 	@Override
 	public String toString() {
 		return "Orginization [id=" + id + ", name=" + name + ", description=" + description + ", tags=" + tags
-				+ ", events=" + events + ", members=" + members + "]";
+				+ ", events=" + events + ", memberships=" + memberships + "]";
 	}
 	
 	
