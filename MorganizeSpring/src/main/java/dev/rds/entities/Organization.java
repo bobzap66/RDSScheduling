@@ -31,13 +31,16 @@ public class Organization
 	
 	@OneToMany(mappedBy = "organization")
 	private Set<Event> events;
+
 	
 	@OneToMany(mappedBy = "organization")
 	private Set<Membership> memberships;
+
 	
 	public Organization() {
 		super();
 	}
+
 
 	public Organization(int id, String name, String description, Set<Tag> tags, Set<Event> events,
 			Set<Membership> memberships) {
