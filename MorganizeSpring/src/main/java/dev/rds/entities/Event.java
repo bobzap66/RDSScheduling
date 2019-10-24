@@ -2,23 +2,57 @@ package dev.rds.entities;
 
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name= "event")
 public class Event 
 {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "e_id ")
 	private int id;
+	
+	@Column(name="name ")
 	private String name;
+	
+	@Column(name="startdate ")
 	private long startdate;
+	
+	@Column(name= "enddate")
 	private long enddate;
+	
+	@Column(name= "description")
 	private String description;
+	
+	@Column(name= "maxattendees")
 	private int maxattendees;
+	
+	@Column(name= "location")
 	private String location;
+	
+	@ManyToOne
+	@JoinColumn(name= "org_id")
 	private Organization group;
+	
+	
 	private Set<User> attendees;
+	
+	
 	private Set<User> admins;
+
 	
 	public Event() {
 		super();
 	}
-
+	
 	public Event(int id, String name, long startdate, long enddate, String description, int maxattendees,
 			String location, Organization group, Set<User> attendees, Set<User> admins) {
 		super();
