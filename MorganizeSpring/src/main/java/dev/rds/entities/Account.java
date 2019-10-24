@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -31,20 +32,21 @@ public class Account
 	@Column(name= "email")
 	private String email;
 	
-	private Set<Organization> subscriptions;
+	@OneToMany(mappedBy = "account")
+	private Set<Membership> memberships;
 	
 	public Account() {
 		super();
 	}
 
-	public Account(int id, String name, String username, String password, String email, Set<Organization> subscriptions) {
+	public Account(int id, String name, String username, String password, String email, Set<Membership> memberships) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.username = username;
 		this.password = password;
 		this.email = email;
-		this.subscriptions = subscriptions;
+		this.memberships = memberships;
 	}
 
 	public int getId() {
@@ -87,12 +89,12 @@ public class Account
 		this.email = email;
 	}
 
-	public Set<Organization> getSubscriptions() {
-		return subscriptions;
+	public Set<Membership> getMemberships() {
+		return memberships;
 	}
 
-	public void setSubscriptions(Set<Organization> subscriptions) {
-		this.subscriptions = subscriptions;
+	public void setMemberships(Set<Membership> memberships) {
+		this.memberships = memberships;
 	}
 
 	@Override
