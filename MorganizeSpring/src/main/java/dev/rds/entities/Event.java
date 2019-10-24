@@ -1,7 +1,5 @@
 package dev.rds.entities;
 
-
-
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -11,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,13 +18,13 @@ public class Event
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "e_id ")
+	@Column(name = "e_id")
 	private int id;
 	
-	@Column(name="name ")
+	@Column(name="name")
 	private String name;
 	
-	@Column(name="startdate ")
+	@Column(name="startdate")
 	private long startdate;
 	
 	@Column(name= "enddate")
@@ -44,19 +43,15 @@ public class Event
 	@JoinColumn(name= "org_id")
 	private Organization group;
 	
-	
-	private Set<Account> attendees;
-	
-	
-	private Set<Account> admins;
+	@OneToMany(mappedBy = "event")
+	private Set<Appointment> appointments;
 
-	
 	public Event() {
 		super();
 	}
-	
+
 	public Event(int id, String name, long startdate, long enddate, String description, int maxattendees,
-			String location, Organization group, Set<Account> attendees, Set<Account> admins) {
+			String location, Organization group, Set<Appointment> appointments) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -66,8 +61,7 @@ public class Event
 		this.maxattendees = maxattendees;
 		this.location = location;
 		this.group = group;
-		this.attendees = attendees;
-		this.admins = admins;
+		this.appointments = appointments;
 	}
 
 	public int getId() {
@@ -134,30 +128,18 @@ public class Event
 		this.group = group;
 	}
 
-	public Set<Account> getAttendees() {
-		return attendees;
+	public Set<Appointment> getAppointments() {
+		return appointments;
 	}
 
-	public void setAttendees(Set<Account> attendees) {
-		this.attendees = attendees;
-	}
-
-	public Set<Account> getAdmins() {
-		return admins;
-	}
-
-	public void setAdmins(Set<Account> admins) {
-		this.admins = admins;
+	public void setAppointments(Set<Appointment> appointments) {
+		this.appointments = appointments;
 	}
 
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", name=" + name + ", startdate=" + startdate + ", enddate=" + enddate
-				+ ", description=" + description + ", maxattendees=" + maxattendees + ", location=" + location
-				+ ", attendees=" + attendees + ", admins=" + admins + "]";
+				+ ", description=" + description + ", maxattendees=" + maxattendees + ", location=" + location + "]";
 	}
-	
-	
-	
-	
+
 }
