@@ -2,7 +2,7 @@ package dev.rds.entities;
 
 import java.util.Set;
 
-public class Orginization 
+public class Organization 
 {
 	private int id;
 	private String name;
@@ -11,11 +11,11 @@ public class Orginization
 	private Set<Event> events;
 	private Set<User> members;
 	
-	public Orginization() {
+	public Organization() {
 		super();
 	}
 
-	public Orginization(int id, String name, String description, Set<String> tags, Set<Event> events,
+	public Organization(int id, String name, String description, Set<String> tags, Set<Event> events,
 			Set<User> members) {
 		super();
 		this.id = id;

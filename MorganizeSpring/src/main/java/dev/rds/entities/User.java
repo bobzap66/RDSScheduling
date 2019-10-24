@@ -9,13 +9,13 @@ public class User
 	private String username;
 	private String password;
 	private String email;
-	private Set<Orginization> subscriptions;
+	private Set<Organization> subscriptions;
 	
 	public User() {
 		super();
 	}
 
-	public User(int id, String name, String username, String password, String email, Set<Orginization> subscriptions) {
+	public User(int id, String name, String username, String password, String email, Set<Organization> subscriptions) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -65,11 +65,11 @@ public class User
 		this.email = email;
 	}
 
-	public Set<Orginization> getSubscriptions() {
+	public Set<Organization> getSubscriptions() {
 		return subscriptions;
 	}
 
-	public void setSubscriptions(Set<Orginization> subscriptions) {
+	public void setSubscriptions(Set<Organization> subscriptions) {
 		this.subscriptions = subscriptions;
 	}
 

@@ -6,12 +6,12 @@ public class Event
 {
 	private int id;
 	private String name;
-	private String startdate;
-	private String enddate;
+	private long startdate;
+	private long enddate;
 	private String description;
 	private int maxattendees;
 	private String location;
-	private Orginization group;
+	private Organization group;
 	private Set<User> attendees;
 	private Set<User> admins;
 	
@@ -19,8 +19,8 @@ public class Event
 		super();
 	}
 
-	public Event(int id, String name, String startdate, String enddate, String description, int maxattendees,
-			String location, Orginization group, Set<User> attendees, Set<User> admins) {
+	public Event(int id, String name, long startdate, long enddate, String description, int maxattendees,
+			String location, Organization group, Set<User> attendees, Set<User> admins) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -50,19 +50,19 @@ public class Event
 		this.name = name;
 	}
 
-	public String getStartdate() {
+	public long getStartdate() {
 		return startdate;
 	}
 
-	public void setStartdate(String startdate) {
+	public void setStartdate(long startdate) {
 		this.startdate = startdate;
 	}
 
-	public String getEnddate() {
+	public long getEnddate() {
 		return enddate;
 	}
 
-	public void setEnddate(String enddate) {
+	public void setEnddate(long enddate) {
 		this.enddate = enddate;
 	}
 
@@ -90,11 +90,11 @@ public class Event
 		this.location = location;
 	}
 
-	public Orginization getGroup() {
+	public Organization getGroup() {
 		return group;
 	}
 
-	public void setGroup(Orginization group) {
+	public void setGroup(Organization group) {
 		this.group = group;
 	}
 
