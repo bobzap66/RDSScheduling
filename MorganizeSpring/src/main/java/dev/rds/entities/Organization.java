@@ -9,14 +9,14 @@ public class Organization
 	private String description;
 	private Set<String> tags;
 	private Set<Event> events;
-	private Set<User> members;
+	private Set<Account> members;
 	
 	public Organization() {
 		super();
 	}
 
 	public Organization(int id, String name, String description, Set<String> tags, Set<Event> events,
-			Set<User> members) {
+			Set<Account> members) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -66,11 +66,11 @@ public class Organization
 		this.events = events;
 	}
 
-	public Set<User> getMembers() {
+	public Set<Account> getMembers() {
 		return members;
 	}
 
-	public void setMembers(Set<User> members) {
+	public void setMembers(Set<Account> members) {
 		this.members = members;
 	}
 

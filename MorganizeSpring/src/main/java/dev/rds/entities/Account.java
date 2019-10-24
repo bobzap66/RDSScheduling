@@ -11,12 +11,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="account")
-public class User 
+public class Account 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
-	@Column(name= "u_id ")
+	@Column(name= "a_id ")
 	private int id;
 	
 	@Column(name= "name")
@@ -33,11 +33,11 @@ public class User
 	
 	private Set<Organization> subscriptions;
 	
-	public User() {
+	public Account() {
 		super();
 	}
 
-	public User(int id, String name, String username, String password, String email, Set<Organization> subscriptions) {
+	public Account(int id, String name, String username, String password, String email, Set<Organization> subscriptions) {
 		super();
 		this.id = id;
 		this.name = name;

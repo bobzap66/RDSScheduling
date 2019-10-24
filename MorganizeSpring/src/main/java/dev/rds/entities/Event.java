@@ -44,10 +44,10 @@ public class Event
 	private Organization group;
 	
 	
-	private Set<User> attendees;
+	private Set<Account> attendees;
 	
 	
-	private Set<User> admins;
+	private Set<Account> admins;
 
 	
 	public Event() {
@@ -55,7 +55,7 @@ public class Event
 	}
 	
 	public Event(int id, String name, long startdate, long enddate, String description, int maxattendees,
-			String location, Organization group, Set<User> attendees, Set<User> admins) {
+			String location, Organization group, Set<Account> attendees, Set<Account> admins) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -133,19 +133,19 @@ public class Event
 		this.group = group;
 	}
 
-	public Set<User> getAttendees() {
+	public Set<Account> getAttendees() {
 		return attendees;
 	}
 
-	public void setAttendees(Set<User> attendees) {
+	public void setAttendees(Set<Account> attendees) {
 		this.attendees = attendees;
 	}
 
-	public Set<User> getAdmins() {
+	public Set<Account> getAdmins() {
 		return admins;
 	}
 
-	public void setAdmins(Set<User> admins) {
+	public void setAdmins(Set<Account> admins) {
 		this.admins = admins;
 	}
 
