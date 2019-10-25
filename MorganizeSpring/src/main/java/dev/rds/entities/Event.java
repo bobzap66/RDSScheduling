@@ -39,9 +39,11 @@ public class Event
 	@Column(name= "location")
 	private String location;
 	
+	
+	
 	@ManyToOne
 	@JoinColumn(name= "org_id")
-	private Organization group;
+	private Organization organization;
 	
 	@OneToMany(mappedBy = "event")
 	private Set<Appointment> appointments;
@@ -51,7 +53,7 @@ public class Event
 	}
 
 	public Event(int id, String name, long startdate, long enddate, String description, int maxattendees,
-			String location, Organization group, Set<Appointment> appointments) {
+			String location, Organization organization, Set<Appointment> appointments) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -60,7 +62,7 @@ public class Event
 		this.description = description;
 		this.maxattendees = maxattendees;
 		this.location = location;
-		this.group = group;
+		this.organization = organization;
 		this.appointments = appointments;
 	}
 
@@ -120,12 +122,12 @@ public class Event
 		this.location = location;
 	}
 
-	public Organization getGroup() {
-		return group;
+	public Organization getOrganization() {
+		return organization;
 	}
 
-	public void setGroup(Organization group) {
-		this.group = group;
+	public void setOrganization(Organization organization) {
+		this.organization = organization;
 	}
 
 	public Set<Appointment> getAppointments() {
