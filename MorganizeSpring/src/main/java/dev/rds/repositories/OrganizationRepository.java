@@ -14,6 +14,6 @@ import dev.rds.entities.Tag;
 public interface OrganizationRepository extends CrudRepository <Organization, Integer> {
 	
 	List<Organization> findOrganizationByName(String name);
-	List<Organization> findOrganizationByTag(Tag tag);
+	//List<Organization> findOrganizationByTag(Tag tag);
 
 }
