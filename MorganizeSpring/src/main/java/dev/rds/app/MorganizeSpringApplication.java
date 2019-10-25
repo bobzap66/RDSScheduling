@@ -9,7 +9,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @ComponentScan("dev.rds")
 @EntityScan("dev.rds.entities")
-@EnableJpaRepositories("dev.rds.repository")
+@EnableJpaRepositories("dev.rds.repositories")
+
 public class MorganizeSpringApplication {
 
 	public static void main(String[] args) {
