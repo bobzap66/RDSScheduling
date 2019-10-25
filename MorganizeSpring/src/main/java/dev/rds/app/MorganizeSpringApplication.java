@@ -7,9 +7,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EntityScan("dev.rds.entities")
 @ComponentScan("dev.rds")
+@EntityScan("dev.rds.entities")
 @EnableJpaRepositories("dev.rds.repositories")
+
 public class MorganizeSpringApplication {
 
 	public static void main(String[] args) {

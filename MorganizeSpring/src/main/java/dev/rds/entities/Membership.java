@@ -2,9 +2,12 @@ package dev.rds.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Id;
 
 @Entity
 @Table(name = "membership")
@@ -12,6 +15,11 @@ public class Membership {
 	
 	public static Type MEMBER = Type.MEMBER;
 	public static Type ADMIN = Type.ADMIN;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "mem_id")
+	private int Id;
 	
 	@ManyToOne
 	@JoinColumn(name = "a_id")
