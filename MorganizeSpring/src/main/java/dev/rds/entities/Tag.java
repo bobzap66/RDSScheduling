@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,13 +26,13 @@ public class Tag {
 	@Column(name = "tag")
 	private String tag;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinTable(name = "event_tag",
 	joinColumns = {@JoinColumn(name = "t_id")},
 	inverseJoinColumns = {@JoinColumn(name = "e_id")})
 	private Set<Event> events;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinTable(name = "organization_tag",
 	joinColumns = {@JoinColumn(name = "t_id")},
 	inverseJoinColumns = {@JoinColumn(name = "o_id")})
