@@ -54,7 +54,7 @@ class AccountRepositoryTest
 	@Order(2)
 	void findByUsername() 
 	{
-		Account account = ar.findByUsername("test");
+		Account account = ar.findByUsernameIgnoreCase("test");
 		Account comp = this.createTestAccount();
 		comp.setId(account.getId());
 		assertEquals(account, comp);
@@ -65,8 +65,8 @@ class AccountRepositoryTest
 	@Order(3)
 	void deleteAccount()
 	{
-		ar.delete(ar.findByUsername("test"));
-		Account account = ar.findByUsername("test");
+		ar.delete(ar.findByUsernameIgnoreCase("test"));
+		Account account = ar.findByUsernameIgnoreCase("test");
 		assertEquals(null, account);
 	}
 

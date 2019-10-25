@@ -9,6 +9,5 @@ import dev.rds.entities.Account;
 @Repository
 public interface AccountRepository extends CrudRepository<Account, Integer> {
 	
-	Account findByUsername(String username);
-	
+	Account findByUsernameIgnoreCase(String username);
 }
