@@ -16,17 +16,16 @@ public class Account
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	@Column(name= "a_id ")
+	@Column(name= "a_id")
 	private int id;
 	
 	@Column(name= "name")
 	private String name;
 	
-	@Column(name= "username  ")
+	@Column(name= "username")
 	private String username;
 	
-	@Column(name= "password  ")
+	@Column(name= "password")
 	private String password;
 	
 	@Column(name= "email")
