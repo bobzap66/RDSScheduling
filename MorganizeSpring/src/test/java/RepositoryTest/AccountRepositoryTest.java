@@ -47,6 +47,7 @@ class AccountRepositoryTest
 	@Test
 	void findByUsername() 
 	{
+
 		try
 		{
 			Account account = ar.findByUsername("AccountRepositoryTestUsername");
@@ -56,12 +57,14 @@ class AccountRepositoryTest
 		{
 			Assert.fail();
 		}
+
 	}
 	
 	@Test
 	@Rollback
 	void deleteAccount()
 	{
+
 		try
 		{
 			ar.delete(ar.findByUsername("AccountRepositoryTestUsername"));
@@ -72,6 +75,7 @@ class AccountRepositoryTest
 			Assert.fail();
 		}
 		
+
 	}
 
 }

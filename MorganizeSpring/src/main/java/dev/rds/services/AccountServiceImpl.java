@@ -46,7 +46,7 @@ public class AccountServiceImpl implements AccountService {
 		String password;
 		username = account.getUsername();
 		password = account.getPassword();
-		Account actual = ar.findByUsername(username);
+		Account actual = ar.findByUsernameIgnoreCase(username);
 		if (actual == null ) {
 			return null;
 		} else if (actual.getPassword().equals(password) == false) {
@@ -54,6 +54,22 @@ public class AccountServiceImpl implements AccountService {
 		} else {
 		return actual;
 		}
+	}
+
+
+
+	@Override
+	public Account getAccountById(int id) {
+		Account account = ar.findById(id).get();
+		return account;
+	}
+
+
+
+	@Override
+	public Account getAccountByUsername(String username) {
+		Account account = ar.findByUsernameIgnoreCase(username);
+		return account;
 	}
 
 
