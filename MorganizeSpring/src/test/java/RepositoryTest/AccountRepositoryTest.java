@@ -54,7 +54,7 @@ class AccountRepositoryTest
 		}
 		catch(NullPointerException e)
 		{
-			Assert.assertFalse(false);
+			Assert.fail();
 		}
 	}
 	
@@ -69,7 +69,7 @@ class AccountRepositoryTest
 		}
 		catch(IllegalArgumentException e)
 		{
-			Assert.assertFalse(false);
+			Assert.fail();
 		}
 		
 	}
