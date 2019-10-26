@@ -50,7 +50,7 @@ class AccountRepositoryTest
 
 		try
 		{
-			Account account = ar.findByUsername("AccountRepositoryTestUsername");
+			Account account = ar.findByUsernameIgnoreCase("AccountRepositoryTestUsername");
 			Assert.assertNotNull(account);
 		}
 		catch(NullPointerException e)
@@ -67,7 +67,7 @@ class AccountRepositoryTest
 
 		try
 		{
-			ar.delete(ar.findByUsername("AccountRepositoryTestUsername"));
+			ar.delete(ar.findByUsernameIgnoreCase("AccountRepositoryTestUsername"));
 			Assert.assertTrue(true);
 		}
 		catch(IllegalArgumentException e)

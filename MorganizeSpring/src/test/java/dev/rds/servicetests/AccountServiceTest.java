@@ -59,6 +59,14 @@ class AccountServiceTest {
 	
 	@Test
 	@Rollback
+	public void getAccountByIdTest() {
+		Account account = this.as.getAccountById(1010);
+		boolean result = "DungeonMaster5".equals(account.getUsername());
+		assertEquals(true,result);
+	}
+	
+	@Test
+	@Rollback
 	public void getUpdateAccountTest() {
 		Account account = this.as.getAccountByUsername("godFather");
 		account.setEmail("NoEmail");
