@@ -9,6 +9,10 @@ public interface AccountService {
 	
 	Account login(Account account);
 	
+	Account getAccountById(int id);
+	
+	Account getAccountByUsername(String username);
+	
 	Account updateAccount(Account account);
 	
 	boolean deleteAccount(Account account);

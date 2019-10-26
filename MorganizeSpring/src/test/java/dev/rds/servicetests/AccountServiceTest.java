@@ -41,8 +41,31 @@ class AccountServiceTest {
 		assertEquals(true, result);
 	}
 	
+	@Test
+	@Rollback
+	public void deleteAccountTest() {
+		Account account = this.as.getAccountById(1008);
+		boolean result = this.as.deleteAccount(account);
+		assertEquals(true,result);
+	}
 	
+	@Test
+	@Rollback
+	public void getAccountByUsernameTest() {
+		Account account = this.as.getAccountByUsername("godFather");
+		boolean result = "Godfather".equals(account.getUsername());
+		assertEquals(true,result);
+	}
 	
+	@Test
+	@Rollback
+	public void getUpdateAccountTest() {
+		Account account = this.as.getAccountByUsername("godFather");
+		account.setEmail("NoEmail");
+		Account actual = this.as.updateAccount(account);
+		boolean result = account.getEmail().equals(actual.getEmail());
+		assertEquals(true,result);
+	}
 	
 	
 }
