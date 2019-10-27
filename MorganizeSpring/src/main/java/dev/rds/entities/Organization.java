@@ -12,10 +12,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "organization")
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class, 
+		property = "id")
 public class Organization 
 {
 	@Id
@@ -33,13 +37,12 @@ public class Organization
 	private Set<Tag> tags;
 	
 	@OneToMany(mappedBy = "organization")
+	@JsonIgnore
 	private Set<Event> events;
 
-	
 	@OneToMany(mappedBy = "organization")
 	private Set<Membership> memberships;
 
-	
 	public Organization() {
 		super();
 	}
