@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.JoinColumn;
@@ -37,12 +38,14 @@ public class Tag {
 	@JoinTable(name = "event_tag",
 	joinColumns = {@JoinColumn(name = "t_id")},
 	inverseJoinColumns = {@JoinColumn(name = "e_id")})
+	@JsonIgnore
 	private Set<Event> events;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "organization_tag",
 	joinColumns = {@JoinColumn(name = "t_id")},
 	inverseJoinColumns = {@JoinColumn(name = "o_id")})
+	@JsonIgnore
 	private Set<Organization> organizations;
 
 	public Tag() {
