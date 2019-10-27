@@ -15,8 +15,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-
+import dev.rds.entities.Account;
 import dev.rds.entities.Event;
+import dev.rds.services.AccountService;
 import dev.rds.services.EventService;
 
 @SpringBootTest
@@ -28,6 +29,9 @@ class EventServiceTest {
 	
 	@Autowired
 	EventService es;
+	
+	@Autowired
+	AccountService as;
 
 	@Test
 	@Rollback
@@ -39,7 +43,8 @@ class EventServiceTest {
 		 event.setDescription(" Music Festival");
 		 event.setMaxattendees(4000);
 		 event.setLocation("Downtown Morgantown");
-		 Event myEvent = this.es.createEvent(event);
+		 Account account = as.getAccountById(1010);
+		 Event myEvent = this.es.createEvent(event, account);
 		 boolean result = event.getName().equals(myEvent.getName());
 		 Assert.assertEquals(true, result);
 		 
