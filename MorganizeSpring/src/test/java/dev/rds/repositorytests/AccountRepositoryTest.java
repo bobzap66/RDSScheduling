@@ -1,4 +1,4 @@
-package RepositoryTest;
+package dev.rds.repositorytests;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.MethodOrderer;
