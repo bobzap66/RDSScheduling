@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import dev.rds.entities.Account;
 import dev.rds.entities.Event;
 import dev.rds.entities.Organization;
+import dev.rds.entities.Type;
 import dev.rds.repositories.EventRepository;
 
 
@@ -17,13 +19,10 @@ public class EventServiceImpl implements EventService{
 	
 	@Autowired
 	EventRepository er;
+	
+	@Autowired
+	AppointmentService apts;
 
-	@Override
-	public Event createEvent(Event event) {
-		event = er.save(event);
-		
-		return event;
-	}
 
 	@Override
 	public Event getEventById(int id) {
@@ -74,6 +73,14 @@ public class EventServiceImpl implements EventService{
 		Set<Event> events = er.findByOrganization(organization.getName());
 		return events;
 	}
+
+	@Override
+	public Event createEvent(Event event, Account account) {
+		event = er.save(event);
+		apts.createAppointment(account, event, Type.ADMIN);
+		return event;
+	}
+
 
 }
 	
