@@ -58,7 +58,7 @@ public class EventController {
 	
 	@RequestMapping(value = "/events/{id}", method = RequestMethod.POST)
 	@ResponseBody
-	public Event registerForEvent(@PathVariable int id, Account account) {
+	public Event registerForEvent(@PathVariable int id, @RequestBody Account account) {
 		account = as.getAccountByUsername(account.getUsername());
 		Event event = es.getEventById(id);
 		apts.createAppointment(account, event, Type.MEMBER);

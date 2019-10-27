@@ -1,6 +1,9 @@
 package dev.rds.services;
 
+import java.util.Set;
+
 import dev.rds.entities.Event;
+import dev.rds.entities.Organization;
 
 public interface EventService {
 	
@@ -15,5 +18,7 @@ public interface EventService {
 	
 	//delete event
 	boolean deleteEvent(Event event);
+	
+	Set<Event> getEventsByOrganization(Organization organization);
 
 }

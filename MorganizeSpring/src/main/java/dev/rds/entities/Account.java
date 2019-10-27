@@ -43,7 +43,7 @@ public class Account
 	@Column(name= "email")
 	private String email;
 	
-	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "account")
 	private Set<Appointment> appointments;
 	
 	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
