@@ -43,8 +43,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public boolean deleteAccount(Account account) {
+		Account actual = ar.findByUsernameIgnoreCase(account.getUsername());
 		try {
-			ar.delete(account);
+			ar.delete(actual);
 			return true;
 		} catch(IllegalArgumentException e) {
 			return false;

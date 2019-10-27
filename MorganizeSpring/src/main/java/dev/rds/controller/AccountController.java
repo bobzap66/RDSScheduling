@@ -40,4 +40,11 @@ public class AccountController
 		account = as.updateAccount(account);
 		return account;
 	}
+	
+	@RequestMapping(value = "/users", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void deleteAccount(Account account) {
+		as.deleteAccount(account);
+		
+	}
 }
