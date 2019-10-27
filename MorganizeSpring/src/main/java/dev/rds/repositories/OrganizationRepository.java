@@ -1,6 +1,7 @@
 package dev.rds.repositories;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import dev.rds.entities.Tag;
 @Repository
 public interface OrganizationRepository extends CrudRepository <Organization, Integer> {
 	
-	List<Organization> findOrganizationByName(String name);
-	//List<Organization> findOrganizationByTag(Tag tag);
+	Set<Organization> findOrganizationByName(String name);
+	Set<Organization> findOrganizationByTags(Tag tag);
 
 }

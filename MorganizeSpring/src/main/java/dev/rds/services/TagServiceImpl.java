@@ -38,14 +38,14 @@ public class TagServiceImpl implements TagService {
 
 	@Override
 	public Set<Tag> getTagsByEvent(Event event) {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Tag> tags = tr.findByEvents(event);
+		return tags;
 	}
 
 	@Override
 	public Set<Tag> getTagsByOrganization(Organization organization) {
-		// TODO Auto-generated method stub
-		return null;
+		Set<Tag> tags = tr.findByOrganizations(organization);
+		return tags;
 	}
 
 }

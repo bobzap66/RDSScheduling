@@ -2,6 +2,8 @@ package dev.rds.servicetests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Set;
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -9,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,12 +42,41 @@ class AppointmentServiceTest {
 	EventService es;
 	
 	@Test
-	@Commit
+	@Rollback
 	void createAppointment() {
 		Account a = as.getAccountById(1012);
 		Event e = es.getEventById(2007);
 		Appointment appt = apptService.createAppointment(a, e, Type.MEMBER);
 		Assert.assertEquals(a.getId(), appt.getAccount().getId());
+	}
+	
+	@Test
+	void getAppointmentsByAccount() {
+		Account account = as.getAccountById(1012);
+		Set<Appointment> appts = apptService.getAppointmentsByAccount(account);
+		Assert.assertTrue(appts.size() == 2);
+	}
+	
+	@Test
+	void getAppointmentsByEvent() {
+		Event event = es.getEventById(2012);
+		Set<Appointment> appts = apptService.getAppointmentsByEvent(event);
+		Assert.assertTrue(appts.size() == 2);
+	}
+	
+	@Test
+	void getAppointmentsByAccountAndType() {
+		Account account = as.getAccountById(1012);
+		Set<Appointment> appts = apptService.getAppointmentsByAccountAndType(account, Type.MEMBER);
+		Assert.assertTrue(appts.size() == 2);
+		account = as.getAccountById(1012);
+		appts = apptService.getAppointmentsByAccountAndType(account, Type.ADMIN);
+		Assert.assertTrue(appts.size() == 0);
+	}
+	
+	@Test
+	void getAppointmentsByEventAndType() {
+		
 	}
 
 }
