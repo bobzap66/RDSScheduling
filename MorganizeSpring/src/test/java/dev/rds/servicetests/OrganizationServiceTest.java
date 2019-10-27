@@ -1,6 +1,9 @@
 package dev.rds.servicetests;
 
 
+import java.util.Iterator;
+import java.util.Set;
+
 import org.junit.Assert;
 
 import org.junit.jupiter.api.MethodOrderer;
@@ -15,7 +18,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
 import dev.rds.entities.Organization;
+import dev.rds.entities.Tag;
 import dev.rds.services.OrganizationService;
+import dev.rds.services.TagService;
 
 @SpringBootTest
 @Transactional
@@ -26,6 +31,9 @@ class OrganizationServiceTest {
 
 	@Autowired
 	OrganizationService os;
+	
+	@Autowired
+	TagService ts;
 	
 	@Test
 	@Rollback
@@ -66,5 +74,37 @@ class OrganizationServiceTest {
 		Organization organization = this.os.getOrganizationById(3000);
 		boolean result = this.os.deleteOrganization(organization);
 		Assert.assertEquals(true, result);
+	}
+	
+	@Test
+	@Rollback
+	public void searchOrganizationByTagIdTest() {
+		Tag tag = ts.getTagById(1);
+		Set<Organization> organizations = this.os.searchOrganizationsByTag(tag);
+		Iterator<Organization> itr = organizations.iterator(); 
+		boolean result = false;
+		while(itr.hasNext()) { 
+			if("D&D Winners".equals(itr.next().getName())) {
+				result = true;
+			};
+		}
+		Assert.assertEquals(true, result);
+		
+	}
+	
+	@Test
+	@Rollback
+	public void searchOrganizationByTagContentTest() {
+		Tag tag = ts.getTagByTag("dungeons and Dragons");
+		Set<Organization> organizations = this.os.searchOrganizationsByTag(tag);
+		Iterator<Organization> itr = organizations.iterator(); 
+		boolean result = false;
+		while(itr.hasNext()) { 
+			if("D&D Winners".equals(itr.next().getName())) {
+				result = true;
+			};
+		}
+		Assert.assertEquals(true, result);
+		
 	}
 }

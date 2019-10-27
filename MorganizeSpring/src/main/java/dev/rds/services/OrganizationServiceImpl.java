@@ -1,10 +1,13 @@
 package dev.rds.services;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import dev.rds.entities.Organization;
+import dev.rds.entities.Tag;
 import dev.rds.repositories.OrganizationRepository;
 
 @Component
@@ -40,6 +43,12 @@ public class OrganizationServiceImpl implements OrganizationService{
 		} catch(IllegalArgumentException e) {
 			return false;
 		}
+	}
+
+	@Override
+	public Set<Organization> searchOrganizationsByTag(Tag tag) {
+		Set<Organization> organizations = or.findOrganizationByTags(tag);
+		return organizations;
 	}
 
 }

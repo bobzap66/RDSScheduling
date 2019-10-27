@@ -1,6 +1,9 @@
 package dev.rds.services;
 
+import java.util.Set;
+
 import dev.rds.entities.Organization;
+import dev.rds.entities.Tag;
 
 public interface OrganizationService {
 	
@@ -9,6 +12,7 @@ public interface OrganizationService {
 	
 	//Read
 	Organization getOrganizationById(int id);
+	Set<Organization> searchOrganizationsByTag(Tag tag);
 	
 	//Update
 	Organization updateOrganization(Organization organization);
