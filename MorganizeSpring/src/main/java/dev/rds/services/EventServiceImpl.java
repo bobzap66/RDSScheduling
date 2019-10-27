@@ -71,7 +71,7 @@ public class EventServiceImpl implements EventService{
 
 	@Override
 	public Set<Event> getEventsByOrganization(Organization organization) {
-		Set<Event> events = er.findByOrganization(organization.getName());
+		Set<Event> events = er.findByOrganization(organization);
 		return events;
 	}
 

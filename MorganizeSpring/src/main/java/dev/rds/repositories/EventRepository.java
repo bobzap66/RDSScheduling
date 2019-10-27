@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import dev.rds.entities.Event;
+import dev.rds.entities.Organization;
 import dev.rds.entities.Tag;
 
 @Component
@@ -21,5 +22,5 @@ public interface EventRepository extends CrudRepository<Event, Integer>{
 	Set<Event> findByTags(Tag tag);
 	
 	//by organization
-	Set<Event> findByOrganization(String name);
+	Set<Event> findByOrganization(Organization organization);
 }

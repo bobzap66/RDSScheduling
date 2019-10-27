@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -54,6 +55,9 @@ public class Event
 	
 	@OneToMany(mappedBy = "event")
 	private Set<Appointment> appointments;
+	
+	@ManyToMany(mappedBy = "events")
+	private Set<Tag> tags;
 
 	public Event() {
 		super();

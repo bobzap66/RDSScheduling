@@ -37,6 +37,7 @@ public class Membership {
 	private Organization organization;
 	
 	@Column(name = "type")
+	//TODO add @Enumerated annotation when DB can be reset
 	private Type type;
 
 	public Membership() {
