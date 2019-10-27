@@ -24,14 +24,28 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account updateAccount(Account account) {
-		account = ar.save(account);
+		Account actual = ar.findByUsernameIgnoreCase(account.getUsername());
+		if(actual == null) {
+			return null;
+		}
+		if(account.getEmail() != null) {
+			actual.setEmail(account.getEmail());
+		}
+		if(account.getPassword() != null) {
+			actual.setPassword(account.getPassword());
+		}
+		if(account.getName() != null) {
+			actual.setName(account.getName());
+		}
+		account = ar.save(actual);
 		return account;
 	}
 
 	@Override
 	public boolean deleteAccount(Account account) {
+		Account actual = ar.findByUsernameIgnoreCase(account.getUsername());
 		try {
-			ar.delete(account);
+			ar.delete(actual);
 			return true;
 		} catch(IllegalArgumentException e) {
 			return false;

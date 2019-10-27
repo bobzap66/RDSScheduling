@@ -14,7 +14,7 @@ import dev.rds.services.AccountService;
 
 @RestController
 @CrossOrigin
-public class LoginController 
+public class AccountController 
 {
 	@Autowired
 	AccountService as;
@@ -27,4 +27,24 @@ public class LoginController
 		return temp;
 	}
 	
+	@RequestMapping(value = "/users", method = RequestMethod.POST)
+	@ResponseBody
+	public Account createAccount(@RequestBody Account account) {
+		account = as.createAccount(account);
+		return account;
+	}
+	
+	@RequestMapping(value = "/users", method = RequestMethod.PUT)
+	@ResponseBody
+	public Account updateAccount(@RequestBody Account account) {
+		account = as.updateAccount(account);
+		return account;
+	}
+	
+	@RequestMapping(value = "/users", method = RequestMethod.DELETE)
+	@ResponseBody
+	public void deleteAccount(Account account) {
+		as.deleteAccount(account);
+		
+	}
 }
