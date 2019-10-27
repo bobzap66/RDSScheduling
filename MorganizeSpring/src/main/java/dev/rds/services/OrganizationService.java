@@ -12,7 +12,7 @@ public interface OrganizationService {
 	
 	//Read
 	Organization getOrganizationById(int id);
-	Set<Organization> searchOrganizationsByTag(Tag tag);
+	Set<Organization> searchOrganizationsByTag(String tag);
 	
 	//Update
 	Organization updateOrganization(Organization organization);

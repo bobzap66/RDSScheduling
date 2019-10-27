@@ -76,27 +76,12 @@ class OrganizationServiceTest {
 		Assert.assertEquals(true, result);
 	}
 	
-	@Test
-	@Rollback
-	public void searchOrganizationByTagIdTest() {
-		Tag tag = ts.getTagById(1);
-		Set<Organization> organizations = this.os.searchOrganizationsByTag(tag);
-		Iterator<Organization> itr = organizations.iterator(); 
-		boolean result = false;
-		while(itr.hasNext()) { 
-			if("D&D Winners".equals(itr.next().getName())) {
-				result = true;
-			};
-		}
-		Assert.assertEquals(true, result);
-		
-	}
+
 	
 	@Test
 	@Rollback
 	public void searchOrganizationByTagContentTest() {
-		Tag tag = ts.getTagByTag("dungeons and Dragons");
-		Set<Organization> organizations = this.os.searchOrganizationsByTag(tag);
+		Set<Organization> organizations = this.os.searchOrganizationsByTag("dungeons and Dragons");
 		Iterator<Organization> itr = organizations.iterator(); 
 		boolean result = false;
 		while(itr.hasNext()) { 

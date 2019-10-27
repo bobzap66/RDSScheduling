@@ -16,6 +16,9 @@ public class OrganizationServiceImpl implements OrganizationService{
 	
 	@Autowired
 	OrganizationRepository or;
+	
+	@Autowired
+	TagService ts;
 
 	@Override
 	public Organization createOrganization(Organization organization) {
@@ -46,8 +49,12 @@ public class OrganizationServiceImpl implements OrganizationService{
 	}
 
 	@Override
-	public Set<Organization> searchOrganizationsByTag(Tag tag) {
-		Set<Organization> organizations = or.findOrganizationByTags(tag);
+	public Set<Organization> searchOrganizationsByTag(String tag) {
+		Tag actual = ts.getTagByTag(tag);
+		if(actual == null) {
+			return null;
+		}
+		Set<Organization> organizations = or.findOrganizationByTags(actual);
 		return organizations;
 	}
 
