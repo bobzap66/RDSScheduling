@@ -7,6 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.Id;
 
 @Entity
@@ -19,7 +23,7 @@ public class Membership {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "mem_id")
-	private int Id;
+	private int id;
 	
 	@ManyToOne
 	@JoinColumn(name = "a_id")
@@ -36,11 +40,20 @@ public class Membership {
 		super();
 	}
 
-	public Membership(Account account, Organization organization, Type type) {
+	public Membership(int id, Account account, Organization organization, Type type) {
 		super();
+		this.id = id;
 		this.account = account;
 		this.organization = organization;
 		this.type = type;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Account getAccount() {
