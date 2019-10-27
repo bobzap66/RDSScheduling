@@ -12,9 +12,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name= "event")
-public class Event 
+public class Event
 {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -38,8 +44,6 @@ public class Event
 	
 	@Column(name= "location")
 	private String location;
-	
-	
 	
 	@ManyToOne
 	@JoinColumn(name= "org_id")

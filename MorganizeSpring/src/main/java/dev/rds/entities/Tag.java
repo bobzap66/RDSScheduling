@@ -12,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.JoinColumn;
 
 @Entity
@@ -26,13 +30,13 @@ public class Tag {
 	@Column(name = "tag")
 	private String tag;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "event_tag",
 	joinColumns = {@JoinColumn(name = "t_id")},
 	inverseJoinColumns = {@JoinColumn(name = "e_id")})
 	private Set<Event> events;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "organization_tag",
 	joinColumns = {@JoinColumn(name = "t_id")},
 	inverseJoinColumns = {@JoinColumn(name = "o_id")})

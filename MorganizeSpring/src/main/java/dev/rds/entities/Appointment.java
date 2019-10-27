@@ -12,11 +12,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "appointment")
-public class Appointment {
+public class Appointment{
 
 	public static Type ATTENDEE = Type.MEMBER;
 	public static Type ADMIN = Type.ADMIN;
@@ -26,14 +30,12 @@ public class Appointment {
 	@Column(name = "appt_id")
 	private int id;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "a_id")
-	@JsonIgnore
 	private Account account;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "e_id")
-	@JsonIgnore
 	private Event event;
 	
 	@Column(name = "type")
