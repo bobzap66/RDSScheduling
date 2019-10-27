@@ -31,7 +31,6 @@ class EventServiceTest {
 
 	@Test
 	@Rollback
-	//@Commit
 	public void createEventTest() {
 		 Event event = new Event(); 
 		 event.setName("testEvent1");
@@ -50,20 +49,20 @@ class EventServiceTest {
 	@Test
 	@Rollback
 	public void getEventByIdTest() {
-		Event event = this.es.getEventById(2001);
-		String name = "TestEventName";
-		boolean result = name.contentEquals(event.getName());
+		Event event = this.es.getEventById(2007);
+		String name = "Cookout";
+		boolean result = name.equals(event.getName());
 		Assert.assertEquals(true, result);
 	}
 	
 	@Test
 	@Rollback
 	public void updateEventTest() {
-		Event event = this.es.getEventById(2001);
-		String name = "TestName";
+		Event event = this.es.getEventById(2007);
+		String name = "Cookout2";
 		event.setName(name);
 		event = this.es.updateEvent(event);
-		event = this.es.getEventById(2001);
+		event = this.es.getEventById(2007);
 		boolean result = name.equals(event.getName());
 		Assert.assertEquals(true, result);
 	}
@@ -71,7 +70,7 @@ class EventServiceTest {
 	@Test
 	@Rollback
 	    void deleteEvent() {
-		Event event = this.es.getEventById(2001);
+		Event event = this.es.getEventById(2007);
 		boolean result = this.es.deleteEvent(event);
 		Assert.assertEquals(true, result);
 	}
