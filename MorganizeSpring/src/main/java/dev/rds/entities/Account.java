@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,20 +32,24 @@ public class Account
 	@Column(name= "email")
 	private String email;
 	
-	@OneToMany(mappedBy = "account")
+	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+	private Set<Appointment> appointments;
+	
+	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
 	private Set<Membership> memberships;
 	
 	public Account() {
 		super();
 	}
 
-	public Account(int id, String name, String username, String password, String email, Set<Membership> memberships) {
+	public Account(int id, String name, String username, String password, String email, Set<Appointment> appointments, Set<Membership> memberships) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.username = username;
 		this.password = password;
 		this.email = email;
+		this.appointments = appointments;
 		this.memberships = memberships;
 	}
 
@@ -88,6 +93,14 @@ public class Account
 		this.email = email;
 	}
 
+	public Set<Appointment> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(Set<Appointment> appointments) {
+		this.appointments = appointments;
+	}
+	
 	public Set<Membership> getMemberships() {
 		return memberships;
 	}
