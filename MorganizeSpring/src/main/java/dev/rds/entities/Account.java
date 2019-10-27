@@ -21,6 +21,9 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Table(name="account")
 @JsonIgnoreProperties(value={ "password" }, allowSetters= true)
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class, 
+		property = "id")
 public class Account
 {
 	@Id
@@ -41,11 +44,9 @@ public class Account
 	private String email;
 	
 	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
-	@JsonIgnore
 	private Set<Appointment> appointments;
 	
 	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
-	@JsonIgnore
 	private Set<Membership> memberships;
 	
 	public Account() {

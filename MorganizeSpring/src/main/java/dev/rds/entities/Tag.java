@@ -20,6 +20,9 @@ import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "tag")
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class, 
+		property = "id")
 public class Tag {
 	
 	@Id

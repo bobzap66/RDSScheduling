@@ -15,6 +15,9 @@ import javax.persistence.Id;
 
 @Entity
 @Table(name = "membership")
+@JsonIdentityInfo(
+		generator = ObjectIdGenerators.PropertyGenerator.class, 
+		property = "id")
 public class Membership {
 	
 	public static Type MEMBER = Type.MEMBER;
