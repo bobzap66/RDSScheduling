@@ -72,7 +72,7 @@ public class OrganizationController {
 	public Event createEventForOrganization(@PathVariable int id, @RequestBody Event event) {
 		Organization organization = os.getOrganizationById(id);
 		event.setOrganization(organization);
-		//event = es.createEvent(event);
+		event = es.createEvent(event);
 		return event;
 	}
 	
