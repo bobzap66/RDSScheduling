@@ -4,12 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "appointment")
@@ -23,12 +26,14 @@ public class Appointment {
 	@Column(name = "appt_id")
 	private int id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "a_id")
+	@JsonIgnore
 	private Account account;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "e_id")
+	@JsonIgnore
 	private Event event;
 	
 	@Column(name = "type")
@@ -39,11 +44,20 @@ public class Appointment {
 		super();
 	}
 
-	public Appointment(Account account, Event event, Type type) {
+	public Appointment(int id, Account account, Event event, Type type) {
 		super();
+		this.id = id;
 		this.account = account;
 		this.event = event;
 		this.type = type;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Account getAccount() {
