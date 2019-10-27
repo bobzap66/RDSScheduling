@@ -27,7 +27,10 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Override
 	public Appointment createAppointment(Account account, Event event, Type type) {
-		Appointment appointment = new Appointment(0, account, event, type);
+		Appointment appointment = new Appointment();
+		appointment.setAccount(account);
+		appointment.setEvent(event);
+		appointment.setType(type);
 		appointment = ar.save(appointment);
 		return appointment;
 	}

@@ -1,10 +1,13 @@
 package dev.rds.services;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import dev.rds.entities.Event;
+import dev.rds.entities.Organization;
 import dev.rds.repositories.EventRepository;
 
 
@@ -30,8 +33,29 @@ public class EventServiceImpl implements EventService{
 
 	@Override
 	public Event updateEvent(Event event) {
-		
-		event = er.save(event);
+		Event actual = er.findById(event.getId()).orElse(null);
+		if(actual == null) {
+			return null;
+		}
+		if(event.getName() != null) {
+			actual.setName(event.getName());	
+		}
+		if(event.getDescription() != null) {
+			actual.setDescription(event.getDescription());
+		}
+		if(event.getStartdate() != 0) {
+			actual.setStartdate(event.getStartdate());
+		}
+		if(event.getEnddate() != 0) {
+			actual.setEnddate(event.getEnddate());
+		}
+		if(event.getMaxattendees() != 0) {
+			actual.setMaxattendees(event.getMaxattendees());
+		}
+		if(event.getLocation() != null) {
+			actual.setLocation(event.getLocation());
+		}
+		event = er.save(actual);
 		return event;
 	}
 
@@ -43,6 +67,12 @@ public class EventServiceImpl implements EventService{
 		} catch(IllegalArgumentException e) {
 			return false;
 		}
+	}
+
+	@Override
+	public Set<Event> getEventsByOrganization(Organization organization) {
+		Set<Event> events = er.findByOrganization(organization.getName());
+		return events;
 	}
 
 }
