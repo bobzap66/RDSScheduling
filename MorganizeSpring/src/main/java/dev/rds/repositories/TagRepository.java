@@ -14,7 +14,7 @@ import dev.rds.entities.Tag;
 @Repository
 public interface TagRepository extends CrudRepository<Tag, Integer> {
 	
-	Tag findByTag(String tag);
+	Tag findByTagIgnoreCase(String tag);
 	
 	Set<Tag> findByEvents(Event event);
 	Set<Tag> findByOrganizations(Organization organization);
