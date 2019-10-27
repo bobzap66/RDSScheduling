@@ -22,6 +22,9 @@ public class EventServiceImpl implements EventService{
 	
 	@Autowired
 	AppointmentService apts;
+	
+	@Autowired
+	MembershipService ms;
 
 
 	@Override
@@ -78,6 +81,19 @@ public class EventServiceImpl implements EventService{
 	public Event createEvent(Event event, Account account) {
 		event = er.save(event);
 		apts.createAppointment(account, event, Type.ADMIN);
+		return event;
+	}
+	
+	@Override
+	public Event createEvent(Event event) {
+		event = er.save(event);
+		Organization organization = event.getOrganization();
+		Set<Account> admins = ms.getMembershipsByOrganizationAndType(organization, Type.ADMIN);
+		for(Account account : admins) {
+			apts.createAppointment(account, event, Type.ADMIN);
+		}
+		event = er.findById(event.getId()).orElse(null);
+		
 		return event;
 	}
 
