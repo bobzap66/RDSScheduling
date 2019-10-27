@@ -44,11 +44,9 @@ public class Account
 	private String email;
 	
 	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
-	@JsonIgnore
 	private Set<Appointment> appointments;
 	
 	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
-	@JsonIgnore
 	private Set<Membership> memberships;
 	
 	public Account() {
