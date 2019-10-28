@@ -2,7 +2,6 @@ package dev.rds.servicetests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -46,7 +45,7 @@ class EventServiceTest {
 		 Account account = as.getAccountById(1010);
 		 Event myEvent = this.es.createEvent(event, account);
 		 boolean result = event.getName().equals(myEvent.getName());
-		 Assert.assertEquals(true, result);
+		 assertEquals(true, result);
 		 
 	}
 	
@@ -57,7 +56,7 @@ class EventServiceTest {
 		Event event = this.es.getEventById(2007);
 		String name = "Cookout";
 		boolean result = name.equals(event.getName());
-		Assert.assertEquals(true, result);
+		assertEquals(true, result);
 	}
 	
 	@Test
@@ -69,7 +68,7 @@ class EventServiceTest {
 		event = this.es.updateEvent(event);
 		event = this.es.getEventById(2007);
 		boolean result = name.equals(event.getName());
-		Assert.assertEquals(true, result);
+		assertEquals(true, result);
 	}
 	
 	@Test
@@ -77,7 +76,7 @@ class EventServiceTest {
 	    void deleteEvent() {
 		Event event = this.es.getEventById(2007);
 		boolean result = this.es.deleteEvent(event);
-		Assert.assertEquals(true, result);
+		assertEquals(true, result);
 	}
 	
 

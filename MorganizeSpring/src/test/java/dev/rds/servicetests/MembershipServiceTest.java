@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
-import org.junit.Assert;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -55,7 +54,7 @@ class MembershipServiceTest {
 		if(("Robert Deniro".equals(membership.getAccount().getName()))&&(membership.getType() == Type.MEMBER) && ("Flag Football Squad".equals(membership.getOrganization().getName()))) {
 			result = true;
 		}
-		Assert.assertEquals(true, result);
+		assertEquals(true, result);
 	}
 
 	@Test
@@ -71,7 +70,7 @@ class MembershipServiceTest {
 				result = true;
 			};
 		}
-		Assert.assertEquals(true, result);
+		assertEquals(true, result);
 	}
 	
 	@Test
@@ -86,7 +85,7 @@ class MembershipServiceTest {
 				result = true;
 			}
 		}
-		Assert.assertEquals(true, result);
+		assertEquals(true, result);
 	}
 	
 	@Test
@@ -101,7 +100,7 @@ class MembershipServiceTest {
 				result = true;
 			}
 		}
-		Assert.assertEquals(true, result);
+		assertEquals(true, result);
 	}
 	
 	@Test
@@ -111,6 +110,6 @@ class MembershipServiceTest {
 		membership.setType(Type.ADMIN);
 		membership = this.ms.updateMembership(membership);
 		boolean result = membership.getType() == Type.ADMIN;
-		Assert.assertEquals(true, result);
+		assertEquals(true, result);
 	}
 }

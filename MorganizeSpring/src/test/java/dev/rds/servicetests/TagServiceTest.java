@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Set;
 
-import org.junit.Assert;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -46,33 +45,33 @@ class TagServiceTest {
 		Tag tag = new Tag();
 		tag.setTag("Hopscotch");
 		tag = ts.createTag(tag);
-		Assert.assertTrue("Hopscotch".equals(tag.getTag()));
+		assertTrue("Hopscotch".equals(tag.getTag()));
 	}
 	
 	@Test
 	void getTagById() {
 		Tag tag = ts.getTagById(1);
-		Assert.assertEquals(tag.getTag(), "Dungeons and Dragons");
+		assertEquals(tag.getTag(), "Dungeons and Dragons");
 	}
 	
 	@Test
 	void getTagByTag() {
 		Tag tag = ts.getTagByTag("dungeons and DRAGONS");
-		Assert.assertEquals(tag.getId(), 1);
+		assertEquals(tag.getId(), 1);
 	}
 	
 	@Test
 	void getTagsByEvent() {
 		Event event = es.getEventById(2012);
 		Set<Tag> tags = ts.getTagsByEvent(event);
-		Assert.assertEquals(tags.size(), 1);
+		assertEquals(tags.size(), 1);
 	}
 	
 	@Test
 	void getTagsByOrganization() {
 		Organization organization = os.getOrganizationById(3000);
 		Set<Tag> tags = ts.getTagsByOrganization(organization);
-		Assert.assertEquals(tags.size(), 1);
+		assertEquals(tags.size(), 1);
 	}
 
 }

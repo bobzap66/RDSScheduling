@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import dev.rds.entities.Account;
 import dev.rds.services.AccountService;
-import junit.framework.Assert;
 
 @SpringBootTest
 @Transactional

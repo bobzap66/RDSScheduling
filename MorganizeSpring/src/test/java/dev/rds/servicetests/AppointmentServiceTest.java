@@ -23,7 +23,6 @@ import dev.rds.entities.Type;
 import dev.rds.services.AccountService;
 import dev.rds.services.AppointmentService;
 import dev.rds.services.EventService;
-import junit.framework.Assert;
 
 @SpringBootTest
 @Transactional
@@ -47,31 +46,31 @@ class AppointmentServiceTest {
 		Account a = as.getAccountById(1012);
 		Event e = es.getEventById(2007);
 		Appointment appt = apptService.createAppointment(a, e, Type.MEMBER);
-		Assert.assertEquals(a.getId(), appt.getAccount().getId());
+		assertEquals(a.getId(), appt.getAccount().getId());
 	}
 	
 	@Test
 	void getAppointmentsByAccount() {
 		Account account = as.getAccountById(1012);
 		Set<Appointment> appts = apptService.getAppointmentsByAccount(account);
-		Assert.assertTrue(appts.size() == 2);
+		assertTrue(appts.size() == 2);
 	}
 	
 	@Test
 	void getAppointmentsByEvent() {
 		Event event = es.getEventById(2012);
 		Set<Appointment> appts = apptService.getAppointmentsByEvent(event);
-		Assert.assertTrue(appts.size() == 2);
+		assertTrue(appts.size() == 2);
 	}
 	
 	@Test
 	void getAppointmentsByAccountAndType() {
 		Account account = as.getAccountById(1012);
 		Set<Appointment> appts = apptService.getAppointmentsByAccountAndType(account, Type.MEMBER);
-		Assert.assertTrue(appts.size() == 2);
+		assertTrue(appts.size() == 2);
 		account = as.getAccountById(1012);
 		appts = apptService.getAppointmentsByAccountAndType(account, Type.ADMIN);
-		Assert.assertTrue(appts.size() == 0);
+		assertTrue(appts.size() == 0);
 	}
 	
 	@Test
