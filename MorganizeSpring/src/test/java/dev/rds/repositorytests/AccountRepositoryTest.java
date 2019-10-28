@@ -1,6 +1,7 @@
 package dev.rds.repositorytests;
 
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -40,7 +41,7 @@ class AccountRepositoryTest
 		 
 		 ar.save(account);
 		 
-		 Assert.assertNotNull(account);
+		 assertNotNull(account);
 	 }
 	 
 	
@@ -51,11 +52,11 @@ class AccountRepositoryTest
 		try
 		{
 			Account account = ar.findByUsernameIgnoreCase("AccountRepositoryTestUsername");
-			Assert.assertNotNull(account);
+			assertNotNull(account);
 		}
 		catch(NullPointerException e)
 		{
-			Assert.fail();
+			fail();
 		}
 
 	}
@@ -68,11 +69,11 @@ class AccountRepositoryTest
 		try
 		{
 			ar.delete(ar.findByUsernameIgnoreCase("AccountRepositoryTestUsername"));
-			Assert.assertTrue(true);
+			assertTrue(true);
 		}
 		catch(IllegalArgumentException e)
 		{
-			Assert.fail();
+			fail();
 		}
 		
 
