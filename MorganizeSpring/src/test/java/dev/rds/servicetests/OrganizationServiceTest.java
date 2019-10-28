@@ -3,8 +3,7 @@ package dev.rds.servicetests;
 
 import java.util.Iterator;
 import java.util.Set;
-
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -44,7 +43,7 @@ class OrganizationServiceTest {
 		Organization actual;
 		actual = this.os.createOrganization(organization);
 		boolean result = organization.getName().equals(actual.getName());
-		Assert.assertEquals(true, result);
+		assertEquals(true, result);
 	}
 	
 	@Test
@@ -53,7 +52,7 @@ class OrganizationServiceTest {
 		Organization organization = this.os.getOrganizationById(3000);
 		String name = "D&D Winners";
 		boolean result = name.equals(organization.getName());
-		Assert.assertEquals(true, result);
+		assertEquals(true, result);
 	}
 	
 	@Test
@@ -65,7 +64,7 @@ class OrganizationServiceTest {
 		organization = this.os.updateOrganization(organization);
 		organization = this.os.getOrganizationById(3000);
 		boolean result = name.equals(organization.getName());
-		Assert.assertEquals(true, result);
+		assertEquals(true, result);
 	}
 	
 	@Test
@@ -73,7 +72,7 @@ class OrganizationServiceTest {
 	public void deleteOrganization() {
 		Organization organization = this.os.getOrganizationById(3000);
 		boolean result = this.os.deleteOrganization(organization);
-		Assert.assertEquals(true, result);
+		assertEquals(true, result);
 	}
 	
 
@@ -89,7 +88,7 @@ class OrganizationServiceTest {
 				result = true;
 			};
 		}
-		Assert.assertEquals(true, result);
+		assertEquals(true, result);
 		
 	}
 }
