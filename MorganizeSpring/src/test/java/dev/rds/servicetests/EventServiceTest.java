@@ -31,10 +31,9 @@ class EventServiceTest {
 
 	@Test
 	@Rollback
-	//@Commit
 	public void createEventTest() {
 		 Event event = new Event(); 
-		 event.setName("testEvent1");
+		 event.setName("rollbackevent");
 		 event.setStartdate(10-10-2018);
 		 event.setEnddate(10-11-2018);
 		 event.setDescription(" Music Festival");
@@ -48,18 +47,31 @@ class EventServiceTest {
 	
 	
 	@Test
-	@Rollback
 	public void getEventByIdTest() {
-		Event event = this.es.getEventById(2001);
-		String name = "TestEventName";
-		boolean result = name.contentEquals(event.getName());
-		Assert.assertEquals(true, result);
+		Event event = new Event(); 
+		 event.setName("testEvent1");
+		 event.setStartdate(10-10-2018);
+		 event.setEnddate(10-11-2018);
+		 event.setDescription(" Music Festival");
+		 event.setMaxattendees(4000);
+		 event.setLocation("Downtown Morgantown");
+		 event.setId(2001);
+		 
+		Event event2 = this.es.getEventById(2046);
+		System.out.println(event2);
+		//String name = "TestEventName";
+		//boolean result = name.contentEquals(event.getName());
+		if(event2 == event)
+			Assert.assertTrue(true);
+		else
+			Assert.fail();
 	}
 	
 	@Test
 	@Rollback
 	public void updateEventTest() {
-		Event event = this.es.getEventById(2001);
+		
+		Event event = this.es.getEventById(2046);
 		String name = "TestName";
 		event.setName(name);
 		event = this.es.updateEvent(event);
