@@ -10,6 +10,7 @@ public interface EventService {
 	
 	//create event
 	Event createEvent(Event event, Account account);
+	Event createEvent(Event event);
 	
 	//read event
 	Event getEventById(int id);
