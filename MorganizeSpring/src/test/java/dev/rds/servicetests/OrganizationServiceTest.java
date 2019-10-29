@@ -16,8 +16,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import dev.rds.entities.Account;
 import dev.rds.entities.Organization;
 import dev.rds.entities.Tag;
+import dev.rds.services.AccountService;
 import dev.rds.services.OrganizationService;
 import dev.rds.services.TagService;
 
@@ -32,6 +34,9 @@ class OrganizationServiceTest {
 	OrganizationService os;
 	
 	@Autowired
+	AccountService as;
+	
+	@Autowired
 	TagService ts;
 	
 	@Test
@@ -39,9 +44,10 @@ class OrganizationServiceTest {
 	public void createOrganizationTest() {
 		Organization organization = new Organization();
 		organization.setName("Pirate Cosplay");
+		Account account = as.getAccountById(1010);
 		organization.setDescription("We like to dress up like pirates and scare people on the street.");
 		Organization actual;
-		actual = this.os.createOrganization(organization);
+		actual = this.os.createOrganization(organization, account);
 		boolean result = organization.getName().equals(actual.getName());
 		assertEquals(true, result);
 	}
