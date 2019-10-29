@@ -5,6 +5,7 @@ import java.util.Set;
 import dev.rds.entities.Account;
 import dev.rds.entities.Event;
 import dev.rds.entities.Organization;
+import dev.rds.entities.Tag;
 
 public interface EventService {
 	
@@ -21,6 +22,7 @@ public interface EventService {
 	//delete event
 	boolean deleteEvent(Event event);
 	
+	Set<Event> getEventsByTag(Tag tag);
 	Set<Event> getEventsByOrganization(Organization organization);
 
 }
