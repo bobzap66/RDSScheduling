@@ -74,12 +74,12 @@ public class EventController {
 		
 	}
 	
-	@RequestMapping(value = "/allEvents", method = RequestMethod.GET)
+	@RequestMapping(value = "/events", method = RequestMethod.GET)
 	@ResponseBody
-	public Set<Event> getAllEventsByTag(@RequestBody String input)
+	public Set<Event> getAllEventsByTag(@RequestParam String tag)
 	{
-		Tag searchBy = ts.getTagByTag(input);
-		Set<Event> events = es.getEventsByTag(searchBy);
+		Tag tag2 = ts.getTagByTag(tag);
+		Set<Event> events = es.getEventsByTag(tag2);
 		return events;
 	}
 }
