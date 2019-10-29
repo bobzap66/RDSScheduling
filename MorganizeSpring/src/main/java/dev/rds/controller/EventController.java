@@ -1,6 +1,7 @@
 package dev.rds.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.xml.ws.Holder;
 
@@ -10,15 +11,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.rds.entities.Account;
 import dev.rds.entities.Event;
+import dev.rds.entities.Tag;
 import dev.rds.entities.Type;
 import dev.rds.services.AccountService;
 import dev.rds.services.AppointmentService;
 import dev.rds.services.EventService;
+import dev.rds.services.TagService;
 
 @RestController
 @CrossOrigin
@@ -32,6 +36,9 @@ public class EventController {
 	
 	@Autowired
 	AppointmentService apts;
+	
+	@Autowired
+	TagService ts;
 	
 	
 	@RequestMapping(value = "/events/{id}", method = RequestMethod.PUT)
@@ -65,5 +72,14 @@ public class EventController {
 		event = es.getEventById(id);
 		return event;
 		
+	}
+	
+	@RequestMapping(value = "/allEvents", method = RequestMethod.GET)
+	@ResponseBody
+	public Set<Event> getAllEventsByTag(@RequestBody String input)
+	{
+		Tag searchBy = ts.getTagByTag(input);
+		Set<Event> events = es.getEventsByTag(searchBy);
+		return events;
 	}
 }

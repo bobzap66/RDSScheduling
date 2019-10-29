@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import dev.rds.entities.Account;
 import dev.rds.entities.Event;
 import dev.rds.entities.Organization;
+import dev.rds.entities.Tag;
 import dev.rds.entities.Type;
 import dev.rds.repositories.EventRepository;
 
@@ -95,6 +96,13 @@ public class EventServiceImpl implements EventService{
 		event = er.findById(event.getId()).orElse(null);
 		
 		return event;
+	}
+
+	@Override
+	public Set<Event> getEventsByTag(Tag tag) 
+	{
+		Set<Event> eventsByTag = er.findByTags(tag);
+		return eventsByTag;
 	}
 
 
