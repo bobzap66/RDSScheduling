@@ -41,11 +41,6 @@ public class OrganizationController {
 		return null;
 	}
 	
-	@RequestMapping(value = "/organizations", method = RequestMethod.POST)
-	public Organization createOrganization(@RequestBody Organization organization){
-		organization = os.createOrganization(organization);
-		return organization;
-	}
 	
 	@RequestMapping(value = "/organizations/{id}", method = RequestMethod.GET)
 	public Organization getOrganizationById(@PathVariable int id) {

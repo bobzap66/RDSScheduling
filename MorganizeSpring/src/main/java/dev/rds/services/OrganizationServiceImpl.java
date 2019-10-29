@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import dev.rds.entities.Account;
 import dev.rds.entities.Organization;
 import dev.rds.entities.Tag;
+import dev.rds.entities.Type;
 import dev.rds.repositories.OrganizationRepository;
 
 @Component
@@ -18,11 +20,15 @@ public class OrganizationServiceImpl implements OrganizationService{
 	OrganizationRepository or;
 	
 	@Autowired
+	MembershipService ms;
+	
+	@Autowired
 	TagService ts;
 
 	@Override
-	public Organization createOrganization(Organization organization) {
+	public Organization createOrganization(Organization organization, Account account) {
 		organization = or.save(organization);
+		ms.createMembership(account, organization, Type.ADMIN);
 		return organization;
 	}
 

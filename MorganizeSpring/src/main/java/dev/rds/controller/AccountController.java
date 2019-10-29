@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.rds.entities.Account;
 import dev.rds.entities.Event;
+import dev.rds.entities.Organization;
 import dev.rds.services.AccountService;
 import dev.rds.services.EventService;
+import dev.rds.services.OrganizationService;
 
 @RestController
 @CrossOrigin
@@ -24,6 +26,9 @@ public class AccountController
 	
 	@Autowired
 	EventService es;
+	
+	@Autowired
+	OrganizationService os;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
@@ -64,5 +69,15 @@ public class AccountController
 		Event actual = es.createEvent(event,  account);
 		return actual;
 		
+	}
+	
+	@RequestMapping(value = "/users/{id}/organizations", method = RequestMethod.POST)
+	public Organization createOrganization(@PathVariable int id, @RequestBody Organization organization){
+		Account account = as.getAccountById(id);
+		if(account == null) {
+			return null;
+		}
+		organization = os.createOrganization(organization, account);
+		return organization;
 	}
 }
