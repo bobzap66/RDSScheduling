@@ -76,7 +76,7 @@ public class EventController {
 	
 	@RequestMapping(value = "/allEvents", method = RequestMethod.GET)
 	@ResponseBody
-	public Set<Event> getAllEventsByTag(@RequestParam String input)
+	public Set<Event> getAllEventsByTag(@RequestBody String input)
 	{
 		Tag searchBy = ts.getTagByTag(input);
 		Set<Event> events = es.getEventsByTag(searchBy);
