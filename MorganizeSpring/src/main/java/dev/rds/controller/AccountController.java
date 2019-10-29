@@ -1,5 +1,7 @@
 package dev.rds.controller;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -11,10 +13,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.rds.entities.Account;
+import dev.rds.entities.Appointment;
 import dev.rds.entities.Event;
+import dev.rds.entities.Membership;
 import dev.rds.entities.Organization;
 import dev.rds.services.AccountService;
+import dev.rds.services.AppointmentService;
 import dev.rds.services.EventService;
+import dev.rds.services.MembershipService;
 import dev.rds.services.OrganizationService;
 
 @RestController
@@ -29,6 +35,12 @@ public class AccountController
 	
 	@Autowired
 	OrganizationService os;
+	
+	@Autowired
+	MembershipService ms;
+	
+	@Autowired
+	AppointmentService apts;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
@@ -82,4 +94,25 @@ public class AccountController
 		organization = os.createOrganization(organization, account);
 		return organization;
 	}
+	
+	@RequestMapping(value = "/users/{id}/organizations", method = RequestMethod.GET)
+	public Set<Membership> getMembershipsByAccount(@PathVariable int id){
+		Account account = as.getAccountById(id);
+		if(account == null) {
+			return null;
+		}
+		Set<Membership> memberships = ms.getMembershipsByAccount(account);
+		return memberships;
+	}
+	
+	@RequestMapping(value = "/users/{id}/events", method = RequestMethod.GET)
+	public Set<Appointment> getAppointmentsByAccount(@PathVariable int id){
+		Account account = as.getAccountById(id);
+		if(account == null) {
+			return null;
+		}
+		Set<Appointment> appointments = apts.getAppointmentsByAccount(account);
+		return appointments;
+	}
+	
 }

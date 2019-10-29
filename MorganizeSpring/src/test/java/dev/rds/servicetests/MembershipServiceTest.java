@@ -62,11 +62,11 @@ class MembershipServiceTest {
 	void getOrganizationsByAccountTest() {
 		Account account = this.as.getAccountById(1010);
 		
-		Set<Organization> organizations = ms.getMembershipsByAccount(account);
-		Iterator<Organization> itr = organizations.iterator(); 
+		Set<Membership> memberships = ms.getMembershipsByAccount(account);
+		Iterator<Membership> itr = memberships.iterator(); 
 		boolean result = false;
 		while(itr.hasNext()) { 
-			if("D&D Winners".equals(itr.next().getName())) {
+			if("D&D Winners".equals(itr.next().getOrganization().getName())) {
 				result = true;
 			};
 		}
