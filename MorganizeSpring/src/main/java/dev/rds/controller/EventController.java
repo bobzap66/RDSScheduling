@@ -74,7 +74,7 @@ public class EventController {
 		
 	}
 	
-	@RequestMapping(value = "/allEvents", method = RequestMethod.GET)
+	@RequestMapping(value = "/events", method = RequestMethod.GET)
 	@ResponseBody
 	public Set<Event> getAllEventsByTag(@RequestParam String tag)
 	{
