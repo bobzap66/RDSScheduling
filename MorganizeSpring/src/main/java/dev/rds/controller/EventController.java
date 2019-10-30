@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.rds.entities.Account;
+import dev.rds.entities.Appointment;
 import dev.rds.entities.Event;
 import dev.rds.entities.Tag;
 import dev.rds.entities.Type;
@@ -89,6 +90,50 @@ public class EventController {
 			 events = es.getAllEvents();
 		}
 		return events;
+	}
+	
+	@RequestMapping(value = "/users/{u_id}/events/{e_id}", method = RequestMethod.PUT)
+	@ResponseBody
+	public Event updateEvent(@PathVariable int u_id, @PathVariable int e_id, @RequestBody Event event) {
+		Account account = as.getAccountById(u_id);
+		if(account == null) {
+			return null;
+		}
+		Set<Appointment> appointments = apts.getAppointmentsByEventAndType(event, Type.ADMIN);
+		for(Appointment appointment : appointments ) {
+			if(appointment.getAccount().getId() == account.getId()) {
+				event = es.updateEvent(event);
+				return event;
+			}
+			
+		}
+		
+		return null;
+		
+	}
+	
+	@RequestMapping(value = "/users/{u_id}/events/{e_id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public boolean deleteEvent(@PathVariable int u_id, @PathVariable int e_id) {
+		Account account = as.getAccountById(u_id);
+		if(account == null) {
+			return false;
+		}
+		Event event = es.getEventById(e_id);
+		if(event == null) {
+			return false;
+		}
+		Set<Appointment> appointments = apts.getAppointmentsByEventAndType(event, Type.ADMIN);
+		for(Appointment appointment : appointments ) {
+			if(appointment.getAccount().getId() == account.getId()) {
+		
+				return es.deleteEvent(event);
+			}
+			
+		}
+		
+		return false;
+		
 	}
 
 }

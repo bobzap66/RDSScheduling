@@ -120,7 +120,7 @@ public class OrganizationController {
 	
 	
 	@RequestMapping(value = "/users/{u_id}/organizations/{o_id}", method = RequestMethod.DELETE)
-	public boolean promoteToAdmin(@PathVariable int u_id, @PathVariable int o_id) {
+	public boolean deleteOrganization(@PathVariable int u_id, @PathVariable int o_id) {
 		Account admin = as.getAccountById(u_id);
 		Organization organization = os.getOrganizationById(o_id);
 		Membership oAdmin = ms.getMembershipByOrganizationAndAccount(organization, admin);
