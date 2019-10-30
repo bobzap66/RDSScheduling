@@ -13,6 +13,7 @@ public interface OrganizationService {
 	//Read
 	Organization getOrganizationById(int id);
 	Set<Organization> searchOrganizationsByTag(String tag);
+	Set<Organization> getAllOrganizations();
 	
 	//Update
 	Organization updateOrganization(Organization organization);
@@ -20,4 +21,5 @@ public interface OrganizationService {
 	//Delete
 	boolean deleteOrganization(Organization organization);
 
+	
 }

@@ -58,4 +58,11 @@ public class OrganizationServiceImpl implements OrganizationService{
 		return organizations;
 	}
 
+	@Override
+	public Set<Organization> getAllOrganizations()
+	{
+		Set<Organization> organizations = or.findAll();
+		return organizations;
+	}
+
 }

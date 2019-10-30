@@ -38,10 +38,19 @@ public class OrganizationController {
 	AccountService as;
 	
 	@RequestMapping(value = "/organizations", method = RequestMethod.GET)
-	public Set<Organization> getOrganizations(@RequestParam String tag)
+	public Set<Organization> getOrganizations(@RequestParam(required = false) String tag)
 	{
-		Set<Organization> organizations = os.searchOrganizationsByTag(tag);
+		if(tag != null)
+		{
+			Set<Organization> organizations = os.searchOrganizationsByTag(tag);
 		return organizations;
+		}
+		else
+		{
+			Set<Organization> organizations = os.getAllOrganizations();
+			return organizations;
+		}
+		
 	}
 	
 	@RequestMapping(value = "/organizations", method = RequestMethod.POST)
