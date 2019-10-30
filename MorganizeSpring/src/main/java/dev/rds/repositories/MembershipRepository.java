@@ -18,6 +18,8 @@ public interface MembershipRepository extends CrudRepository<Membership, Integer
 	Set<Membership> findAllByAccount(Account account);
 	Set<Membership> findAllByOrganization(Organization organizaion);
 	
+	Membership findByOrganizationAndAccount(Organization organization, Account account);
+	
 	Set<Membership> findAllByAccountAndType(Account account, Type type);
 	Set<Membership> findAllByOrganizationAndType(Organization organization, Type type);
 
