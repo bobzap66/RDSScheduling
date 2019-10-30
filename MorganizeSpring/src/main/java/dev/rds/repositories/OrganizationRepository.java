@@ -16,5 +16,5 @@ public interface OrganizationRepository extends CrudRepository <Organization, In
 	
 	Set<Organization> findOrganizationByName(String name);
 	Set<Organization> findOrganizationByTags(Tag tag);
-
+	Set<Organization> findAll();
 }
