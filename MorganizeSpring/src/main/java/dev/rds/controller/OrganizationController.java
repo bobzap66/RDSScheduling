@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.rds.entities.Account;
 import dev.rds.entities.Event;
 import dev.rds.entities.Organization;
+import dev.rds.entities.Tag;
 import dev.rds.entities.Type;
 import dev.rds.services.AccountService;
 import dev.rds.services.EventService;
@@ -36,9 +38,10 @@ public class OrganizationController {
 	AccountService as;
 	
 	@RequestMapping(value = "/organizations", method = RequestMethod.GET)
-	public Set<Organization> getOrganizations(){
-		// TODO Search by tag not yet implemented
-		return null;
+	public Set<Organization> getOrganizations(@RequestParam String tag)
+	{
+		Set<Organization> organizations = os.searchOrganizationsByTag(tag);
+		return organizations;
 	}
 	
 	@RequestMapping(value = "/organizations", method = RequestMethod.POST)
