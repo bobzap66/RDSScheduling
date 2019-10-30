@@ -105,6 +105,13 @@ public class EventServiceImpl implements EventService{
 		return eventsByTag;
 	}
 
+	@Override
+	public Set<Event> getAllEvents() 
+	{
+		Set<Event> events = er.findAll();
+		return events;
+	}
+
 
 }
 	
