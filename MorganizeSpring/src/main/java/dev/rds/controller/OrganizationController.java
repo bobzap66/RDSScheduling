@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.rds.entities.Account;
 import dev.rds.entities.Event;
+import dev.rds.entities.Membership;
 import dev.rds.entities.Organization;
 import dev.rds.entities.Tag;
 import dev.rds.entities.Type;
@@ -74,7 +75,51 @@ public class OrganizationController {
 		return event;
 	}
 	
+	@RequestMapping(value = "/users/{u_id}/organizations/{o_id}", method = RequestMethod.PUT)
+	public Organization updateOrganization(@PathVariable int u_id, @PathVariable int o_id, @RequestBody Organization organization) {
+		Account account = as.getAccountById(u_id);
+		if(account == null) {
+			return null;
+		}
+		Set<Account> accounts = ms.getMembershipsByOrganizationAndType(organization, Type.ADMIN);
+		if(accounts.contains(account)) {
+			organization = os.updateOrganization(organization);
+			return organization;
+		}
+		
+		return null;
+		
+	}
+	
+	@RequestMapping(value = "/users/{u_id}/organizations/{o_id}", method = RequestMethod.POST)
+	public Organization promoteToAdmin(@PathVariable int u_id, @PathVariable int o_id, @RequestBody Account account) {
+		Account admin = as.getAccountById(u_id);
+		Organization organization = os.getOrganizationById(o_id);
+		Membership oAdmin = ms.getMembershipByOrganizationAndAccount(organization, admin);
+		if((oAdmin == null)||(oAdmin.getType() == Type.ADMIN)) {
+			return null;
+		}
+		Membership membership = ms.getMembershipByOrganizationAndAccount(organization, account);
+		if(membership == null) {
+			return null;
+		}
+		membership.setType(Type.ADMIN);
+		ms.updateMembership(membership);
+		Organization rv = os.getOrganizationById(o_id);
+		return rv;
+	}
 	
 	
+	@RequestMapping(value = "/users/{u_id}/organizations/{o_id}", method = RequestMethod.DELETE)
+	public boolean promoteToAdmin(@PathVariable int u_id, @PathVariable int o_id) {
+		Account admin = as.getAccountById(u_id);
+		Organization organization = os.getOrganizationById(o_id);
+		Membership oAdmin = ms.getMembershipByOrganizationAndAccount(organization, admin);
+		if((oAdmin == null)||(oAdmin.getType() == Type.ADMIN)) {
+			return false;
+		}
+		
+		return os.deleteOrganization(organization);
+	}
 	
 }

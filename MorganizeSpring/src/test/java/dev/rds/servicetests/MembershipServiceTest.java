@@ -112,4 +112,14 @@ class MembershipServiceTest {
 		boolean result = membership.getType() == Type.ADMIN;
 		assertEquals(true, result);
 	}
+	
+	@Test
+	@Rollback
+	void testGetMembershipByOrganizationAndAccount() {
+		Organization organization = os.getOrganizationById(3005);
+		Account account = as.getAccountById(1012);
+		Membership actual = this.ms.getMembershipById(4);
+		Membership membership = this.ms.getMembershipByOrganizationAndAccount(organization, account);
+		assertEquals(actual, membership);
+	}
 }
