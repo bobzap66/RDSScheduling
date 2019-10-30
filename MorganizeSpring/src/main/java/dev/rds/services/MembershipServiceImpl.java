@@ -22,6 +22,9 @@ public class MembershipServiceImpl implements MembershipService {
 	@Autowired
 	MembershipRepository mr;
 	
+	@Autowired
+	AccountService as;
+	
 	@Override
 	public Membership getMembershipById(int id) {
 		Membership membership = mr.findById(id).orElse(null);
@@ -43,25 +46,16 @@ public class MembershipServiceImpl implements MembershipService {
 	public Set<Account> getMembershipsByOrganizationAndType(Organization organization, Type type) {
 		Set<Membership> memberships = mr.findAllByOrganizationAndType(organization, type);
 		Set<Account> accounts = new HashSet<Account>();
-		Iterator<Membership> itr = memberships.iterator(); 
-		while(itr.hasNext()) { 
-			accounts.add(itr.next().getAccount());
+		for(Membership membership : memberships) {
+			accounts.add(membership.getAccount());
 		}
-
-		
 		return accounts;
 	}
 
 	@Override
-	public Set<Organization> getMembershipsByAccount(Account account) {
+	public Set<Membership> getMembershipsByAccount(Account account) {
 		Set<Membership> memberships = mr.findAllByAccount(account);
-		Set<Organization> organizations = new HashSet<Organization>();
-		Iterator<Membership> itr = memberships.iterator(); 
-		while(itr.hasNext()) { 
-			organizations.add(itr.next().getOrganization());
-		}
-
-		return organizations;
+		return memberships;
 	}
 
 	@Override
@@ -78,6 +72,18 @@ public class MembershipServiceImpl implements MembershipService {
 		} catch(IllegalArgumentException e) {
 			return false;
 		}
+	}
+
+	@Override
+	public Membership getMembershipByOrganizationAndAccount(Organization organization, Account account) {
+		if(account == null) {
+			return null;
+		}
+		if(organization == null) {
+			return null;
+		}
+		Membership membership = mr.findByOrganizationAndAccount(organization, account);
+		return membership;
 	}
 
 }
