@@ -18,6 +18,9 @@ public interface EventRepository extends CrudRepository<Event, Integer>{
 	//find Event by name
 	Set<Event> findByName(String name);
 	
+	//return all events
+	Set<Event> findAll();
+	
 	//find event by tag
 	Set<Event> findByTags(Tag tag);
 	

@@ -76,10 +76,19 @@ public class EventController {
 	
 	@RequestMapping(value = "/events", method = RequestMethod.GET)
 	@ResponseBody
-	public Set<Event> getAllEventsByTag(@RequestParam String tag)
+	public Set<Event> getAllEventsByTag(@RequestParam(required = false) String tag)
 	{
-		Tag tag2 = ts.getTagByTag(tag);
-		Set<Event> events = es.getEventsByTag(tag2);
+		Set<Event> events;
+		if(tag != null)
+		{
+			Tag tag2 = ts.getTagByTag(tag);
+			events = es.getEventsByTag(tag2);
+		}
+		else
+		{
+			 events = es.getAllEvents();
+		}
 		return events;
 	}
+
 }

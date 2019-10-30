@@ -24,5 +24,6 @@ public interface EventService {
 	
 	Set<Event> getEventsByTag(Tag tag);
 	Set<Event> getEventsByOrganization(Organization organization);
+	Set<Event> getAllEvents();
 
 }
