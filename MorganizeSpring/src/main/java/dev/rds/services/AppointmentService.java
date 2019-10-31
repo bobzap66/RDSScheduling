@@ -22,6 +22,8 @@ public interface AppointmentService {
 	
 	Set<Appointment> getAppointmentsByAccountAndEvent(Account account, Event event);
 	
+	Set<Appointment> getAppointmentsByAccountAndEventAndType(Account account, Event event, Type type);
+	
 	// Update
 	Appointment updateAppointment(Appointment appointment);
 	

@@ -75,8 +75,15 @@ public class AppointmentServiceImpl implements AppointmentService {
 		}
 	}
 	
+	@Override
 	public Set<Appointment> getAppointmentsByAccountAndEvent(Account account, Event event){
 		Set<Appointment> appointments = ar.findByAccountAndEvent(account, event);
+		return appointments;
+	}
+	
+	@Override
+	public Set<Appointment> getAppointmentsByAccountAndEventAndType(Account account, Event event, Type type){
+		Set<Appointment> appointments = ar.findByAccountAndEventAndType(account, event, type);
 		return appointments;
 	}
 
