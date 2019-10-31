@@ -41,7 +41,7 @@ public class OrganizationController {
 	@RequestMapping(value = "/organizations", method = RequestMethod.GET)
 	public Set<Organization> getOrganizations(@RequestParam(required = false) String tag)
 	{
-		if(tag != null)
+		if(tag != null && tag != "")
 		{
 			Set<Organization> organizations = os.searchOrganizationsByTag(tag);
 		return organizations;
