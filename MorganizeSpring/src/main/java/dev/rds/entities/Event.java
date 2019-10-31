@@ -149,10 +149,19 @@ public class Event
 		this.appointments = appointments;
 	}
 
+	public Set<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
+
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", name=" + name + ", startdate=" + startdate + ", enddate=" + enddate
-				+ ", description=" + description + ", maxattendees=" + maxattendees + ", location=" + location + "]";
+				+ ", description=" + description + ", maxattendees=" + maxattendees + ", location=" + location
+				+ ", organization=" + organization + ", appointments=" + appointments + ", tags=" + tags + "]";
 	}
 
 }
