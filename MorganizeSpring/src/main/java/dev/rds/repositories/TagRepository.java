@@ -15,7 +15,7 @@ import dev.rds.entities.Tag;
 public interface TagRepository extends CrudRepository<Tag, Integer> {
 	
 	Tag findByTagIgnoreCase(String tag);
-	
+	Set<Tag> findByTagContainingIgnoreCase(String tag);
 	Set<Tag> findByEvents(Event event);
 	Set<Tag> findByOrganizations(Organization organization);
 

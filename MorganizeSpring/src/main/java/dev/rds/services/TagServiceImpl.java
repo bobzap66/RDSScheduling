@@ -32,7 +32,8 @@ public class TagServiceImpl implements TagService {
 
 	@Override
 	public Tag getTagByTag(String tag) {
-		Tag t = tr.findByTagIgnoreCase(tag);
+		Tag t = new Tag();
+		t = tr.findByTagIgnoreCase(tag);
 		return t;
 	}
 
@@ -45,6 +46,12 @@ public class TagServiceImpl implements TagService {
 	@Override
 	public Set<Tag> getTagsByOrganization(Organization organization) {
 		Set<Tag> tags = tr.findByOrganizations(organization);
+		return tags;
+	}
+
+	@Override
+	public Set<Tag> getTagsByTag(String tag) {
+		Set<Tag> tags = tr.findByTagContainingIgnoreCase(tag);
 		return tags;
 	}
 
