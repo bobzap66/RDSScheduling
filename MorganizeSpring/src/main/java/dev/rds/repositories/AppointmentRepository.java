@@ -20,4 +20,6 @@ public interface AppointmentRepository extends CrudRepository<Appointment, Integ
 	
 	Set<Appointment> findByAccountAndType(Account account, Type type);
 	Set<Appointment> findByEventAndType(Event event, Type type);
+	
+	Set<Appointment> findByAccountAndEvent(Account account, Event event);
 }
