@@ -80,7 +80,7 @@ public class EventController {
 	public Set<Event> getAllEventsByTag(@RequestParam(required = false) String tag)
 	{
 		Set<Event> events;
-		if(tag != null)
+		if(tag != null && tag != "")
 		{
 			Tag tag2 = ts.getTagByTag(tag);
 			events = es.getEventsByTag(tag2);
