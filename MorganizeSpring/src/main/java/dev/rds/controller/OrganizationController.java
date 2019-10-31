@@ -69,6 +69,21 @@ public class OrganizationController {
 		return organization;
 	}
 	
+	@RequestMapping(value = "/organizations/{id}", method = RequestMethod.DELETE)
+	public void removeMember(@PathVariable int id, @RequestBody Account account) {
+		if(account != null) {
+			account = as.getAccountById(account.getId()); 
+		}else{
+			return;
+		}
+		Organization organization = os.getOrganizationById(id);
+		Membership membership = ms.getMembershipByOrganizationAndAccount(organization, account);
+		if(membership != null) {
+			ms.deleteMembership(membership);
+		}
+		return;
+	}
+	
 	@RequestMapping(value = "/organizations/{id}/events", method = RequestMethod.GET)
 	public Set<Event> getEventsByOrganization(@PathVariable int id) {
 		Organization organization = os.getOrganizationById(id);
