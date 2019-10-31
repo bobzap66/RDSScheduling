@@ -2,6 +2,9 @@ package dev.rds.servicetests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -16,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import dev.rds.entities.Account;
 import dev.rds.entities.Event;
+import dev.rds.entities.Tag;
 import dev.rds.services.AccountService;
 import dev.rds.services.EventService;
 
@@ -36,12 +40,20 @@ class EventServiceTest {
 	@Rollback
 	public void createEventTest() {
 		 Event event = new Event(); 
-		 event.setName("testEvent1");
-		 event.setStartdate(10-10-2018);
-		 event.setEnddate(10-11-2018);
+		 event.setName("Downtown Blues");
+		 event.setStartdate(1573556400000L);
+		 event.setEnddate(1573588800000L);
 		 event.setDescription(" Music Festival");
 		 event.setMaxattendees(4000);
 		 event.setLocation("Downtown Morgantown");
+		 Set<Tag> tags = new HashSet<Tag>();
+		 Tag tag = new Tag();
+		 Tag tag2 = new Tag();
+		 tag.setTag("Music");
+		 tags.add(tag);
+		 tag2.setTag("Festival");
+		 tags.add(tag2);
+		 event.setTags(tags);
 		 Account account = as.getAccountById(1010);
 		 Event myEvent = this.es.createEvent(event, account);
 		 boolean result = event.getName().equals(myEvent.getName());

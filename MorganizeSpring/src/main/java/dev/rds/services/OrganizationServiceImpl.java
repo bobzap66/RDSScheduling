@@ -1,5 +1,6 @@
 package dev.rds.services;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,23 @@ public class OrganizationServiceImpl implements OrganizationService{
 
 	@Override
 	public Organization createOrganization(Organization organization, Account account) {
+		Set<Tag> tags = organization.getTags();
+		Set<Tag> newTags = new HashSet<Tag>();
+		if(tags != null) {
+			for(Tag tag : tags) {
+				//If the tag doesn't doesn't exist in the database, 
+				//remove the tag from the set of tags attached to the event
+				// and add the tag returned by the database
+				if(ts.getTagByTag(tag.getTag()) == null) {
+					tag = ts.createTag(tag);
+					newTags.add(tag);
+				} else {
+					tag = ts.getTagByTag(tag.getTag());
+					newTags.add(tag);
+				}
+			}
+			organization.setTags(newTags);
+		}
 		organization = or.save(organization);
 		ms.createMembership(account, organization, Type.ADMIN);
 		return organization;
@@ -40,6 +58,22 @@ public class OrganizationServiceImpl implements OrganizationService{
 
 	@Override
 	public Organization updateOrganization(Organization organization) {
+		Set<Tag> tags = organization.getTags();
+		Set<Tag> newTags = new HashSet<Tag>();
+		if(tags != null) {
+			for(Tag tag : tags) {
+				//If the tag doesn't doesn't exist in the database, 
+				//remove the tag from the set of tags attached to the event
+				// and add the tag returned by the database
+				if(ts.getTagByTag(tag.getTag()) == null) {
+					tag = ts.createTag(tag);
+					newTags.add(tag);
+				} else {
+					tag = ts.getTagByTag(tag.getTag());
+					newTags.add(tag);
+				}
+			}
+		}
 		organization = or.save(organization);
 		return organization;
 	}

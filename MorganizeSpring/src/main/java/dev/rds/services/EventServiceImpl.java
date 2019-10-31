@@ -1,5 +1,6 @@
 package dev.rds.services;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class EventServiceImpl implements EventService{
 	
 	@Autowired
 	MembershipService ms;
+	
+	@Autowired
+	TagService ts;
 
 
 	@Override
@@ -58,6 +62,22 @@ public class EventServiceImpl implements EventService{
 		if(event.getLocation() != null) {
 			actual.setLocation(event.getLocation());
 		}
+		Set<Tag> tags = event.getTags();
+		Set<Tag> newTags = new HashSet<Tag>();
+		if(tags != null) {
+			for(Tag tag : tags) {
+				//If the tag doesn't doesn't exist in the database, 
+				//remove the tag from the set of tags attached to the event
+				// and add the tag returned by the database
+				if(ts.getTagByTag(tag.getTag()) == null) {
+					tag = ts.createTag(tag);
+					tags.remove(tag);
+					newTags.add(tag);
+				}
+			}
+			event.setTags(newTags);
+		}
+		event = er.save(event);
 		event = er.save(actual);
 		return event;
 	}
@@ -80,6 +100,24 @@ public class EventServiceImpl implements EventService{
 
 	@Override
 	public Event createEvent(Event event, Account account) {
+		
+		Set<Tag> tags = event.getTags();
+		Set<Tag> newTags = new HashSet<Tag>();
+		if(tags != null) {
+			for(Tag tag : tags) {
+				//If the tag doesn't doesn't exist in the database, 
+				//remove the tag from the set of tags attached to the event
+				// and add the tag returned by the database
+				if(ts.getTagByTag(tag.getTag()) == null) {
+					tag = ts.createTag(tag);
+					newTags.add(tag);
+				} else {
+					tag = ts.getTagByTag(tag.getTag());
+					newTags.add(tag);
+				}
+			}
+			event.setTags(newTags);
+		}
 		event = er.save(event);
 		apts.createAppointment(account, event, Type.ADMIN);
 		return event;
@@ -87,6 +125,21 @@ public class EventServiceImpl implements EventService{
 	
 	@Override
 	public Event createEvent(Event event) {
+		Set<Tag> tags = event.getTags();
+		Set<Tag> newTags = new HashSet<Tag>();
+		if(tags != null) {
+			for(Tag tag : tags) {
+				//If the tag doesn't doesn't exist in the database, 
+				//remove the tag from the set of tags attached to the event
+				// and add the tag returned by the database
+				if(ts.getTagByTag(tag.getTag()) == null) {
+					tag = ts.createTag(tag);
+					tags.remove(tag);
+					newTags.add(tag);
+				}
+			}
+			event.setTags(newTags);
+		}
 		event = er.save(event);
 		Organization organization = event.getOrganization();
 		Set<Account> admins = ms.getMembershipsByOrganizationAndType(organization, Type.ADMIN);
