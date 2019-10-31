@@ -73,5 +73,11 @@ class TagServiceTest {
 		Set<Tag> tags = ts.getTagsByOrganization(organization);
 		assertEquals(tags.size(), 1);
 	}
+	
+	@Test
+	void searchTagsTest() {
+		Set<Tag> tags = ts.getTagsByTag("Flowers");
+		System.out.println(tags);
+	}
 
 }

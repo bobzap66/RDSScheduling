@@ -14,6 +14,7 @@ public interface TagService {
 	// Read
 	Tag getTagById(int id);
 	Tag getTagByTag(String tag);
+	Set<Tag> getTagsByTag(String tag);
 	
 	Set<Tag> getTagsByEvent(Event event);
 	Set<Tag> getTagsByOrganization(Organization organization);
