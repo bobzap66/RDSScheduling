@@ -21,9 +21,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Entity
 @Table(name="account")
 @JsonIgnoreProperties(value={ "password" }, allowSetters= true)
-@JsonIdentityInfo(
-		generator = ObjectIdGenerators.PropertyGenerator.class, 
-		property = "id")
 public class Account
 {
 	@Id

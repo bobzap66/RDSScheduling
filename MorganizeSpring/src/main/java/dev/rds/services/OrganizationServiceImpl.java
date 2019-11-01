@@ -52,7 +52,7 @@ public class OrganizationServiceImpl implements OrganizationService{
 
 	@Override
 	public Organization getOrganizationById(int id) {
-		Organization organization = or.findById(id).get();
+		Organization organization = or.findById(id).orElse(null);
 		return organization;
 	}
 
