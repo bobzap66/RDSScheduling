@@ -119,7 +119,7 @@ public class EventServiceImpl implements EventService{
 			event.setTags(newTags);
 		}
 		event = er.save(event);
-		apts.createAppointment(account, event, Type.ADMIN);
+		apts.createAppointment(account, event, false, true);
 		return event;
 	}
 	
@@ -144,7 +144,7 @@ public class EventServiceImpl implements EventService{
 		Organization organization = event.getOrganization();
 		Set<Account> admins = ms.getMembershipsByOrganizationAndType(organization, Type.ADMIN);
 		for(Account account : admins) {
-			apts.createAppointment(account, event, Type.ADMIN);
+			apts.createAppointment(account, event, false, true);
 		}
 		event = er.findById(event.getId()).orElse(null);
 		

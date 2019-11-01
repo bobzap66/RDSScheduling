@@ -17,9 +17,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "organization")
-@JsonIdentityInfo(
-		generator = ObjectIdGenerators.PropertyGenerator.class, 
-		property = "id")
 public class Organization 
 {
 	@Id
@@ -41,6 +38,7 @@ public class Organization
 	private Set<Event> events;
 
 	@OneToMany(mappedBy = "organization")
+	@JsonIgnore
 	private Set<Membership> memberships;
 
 	public Organization() {
