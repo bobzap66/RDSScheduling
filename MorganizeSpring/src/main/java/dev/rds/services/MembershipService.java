@@ -15,6 +15,7 @@ public interface MembershipService {
 	Membership getMembershipByOrganizationAndAccount(Organization organization, Account account);
 	Set<Account> getMembershipsByOrganizationAndType(Organization organization, Type type);
 	Set<Membership> getMembershipsByAccount(Account account);
+	Set<Membership> getMembershipsByOrganization(Organization organization);
 	
 	Membership updateMembership(Membership membership);
 	

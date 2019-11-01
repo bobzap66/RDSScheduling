@@ -120,7 +120,7 @@ public class OrganizationController {
 		Account admin = as.getAccountById(u_id);
 		Organization organization = os.getOrganizationById(o_id);
 		Membership oAdmin = ms.getMembershipByOrganizationAndAccount(organization, admin);
-		if((oAdmin == null)||(oAdmin.getType() == Type.ADMIN)) {
+		if((oAdmin == null)||(oAdmin.getType() != Type.ADMIN)) {
 			return null;
 		}
 		Membership membership = ms.getMembershipByOrganizationAndAccount(organization, account);
@@ -139,11 +139,18 @@ public class OrganizationController {
 		Account admin = as.getAccountById(u_id);
 		Organization organization = os.getOrganizationById(o_id);
 		Membership oAdmin = ms.getMembershipByOrganizationAndAccount(organization, admin);
-		if((oAdmin == null)||(oAdmin.getType() == Type.ADMIN)) {
+		if((oAdmin == null)||(oAdmin.getType() != Type.ADMIN)) {
 			return false;
 		}
 		
 		return os.deleteOrganization(organization);
+	}
+	
+	@RequestMapping(value = "/organizations/{o_id}/members", method = RequestMethod.GET)
+	public Set<Membership> getMembersByOrganization(@PathVariable int o_id){
+		Organization organization = os.getOrganizationById(o_id);
+		Set<Membership> memberships = ms.getMembershipsByOrganization(organization);
+		return memberships;
 	}
 	
 }

@@ -22,7 +22,10 @@ public interface AppointmentService {
 	
 	Appointment getAppointmentByAccountAndEvent(Account account, Event event);
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'dev' of https://github.com/bobzap66/RDSScheduling.git
 	// Update
 	Appointment updateAppointment(Appointment appointment);
 	
