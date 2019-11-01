@@ -86,4 +86,10 @@ public class MembershipServiceImpl implements MembershipService {
 		return membership;
 	}
 
+	@Override
+	public Set<Membership> getMembershipsByOrganization(Organization organization) {
+		Set<Membership> memberships = mr.findAllByOrganization(organization);
+		return memberships;
+	}
+
 }
