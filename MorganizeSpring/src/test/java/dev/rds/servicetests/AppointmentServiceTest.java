@@ -45,7 +45,7 @@ class AppointmentServiceTest {
 	void createAppointment() {
 		Account a = as.getAccountById(1012);
 		Event e = es.getEventById(2007);
-		Appointment appt = apptService.createAppointment(a, e, Type.MEMBER);
+		Appointment appt = apptService.createAppointment(a, e, true, false);
 		assertEquals(a.getId(), appt.getAccount().getId());
 	}
 	

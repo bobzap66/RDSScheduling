@@ -11,7 +11,7 @@ public interface AppointmentService {
 	
 	// Create
 	Appointment createAppointment(Appointment appointment);
-	Appointment createAppointment(Account account, Event event, Type type);
+	Appointment createAppointment(Account account, Event event, boolean attending, boolean admin);
 	
 	// Read
 	Set<Appointment> getAppointmentsByAccount(Account account);
@@ -20,7 +20,7 @@ public interface AppointmentService {
 	Set<Appointment> getAppointmentsByAccountAndType(Account account, Type type);
 	Set<Appointment> getAppointmentsByEventAndType(Event event, Type type);
 	
-	Set<Appointment> getAppointmentsByAccountAndEvent(Account account, Event event);
+	Appointment getAppointmentByAccountAndEvent(Account account, Event event);
 	
 	Set<Appointment> getAppointmentsByAccountAndEventAndType(Account account, Event event, Type type);
 	

@@ -2,8 +2,6 @@ package dev.rds.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,10 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
@@ -25,9 +21,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 		property = "id")
 public class Appointment{
 
-	public static Type ATTENDEE = Type.MEMBER;
-	public static Type ADMIN = Type.ADMIN;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "appt_id")
@@ -41,20 +34,23 @@ public class Appointment{
 	@JoinColumn(name = "e_id")
 	private Event event;
 	
-	@Column(name = "type")
-	@Enumerated(EnumType.STRING)
-	private Type type;
+	@Column(name = "attending")
+	private boolean attending;
+	
+	@Column(name = "admin")
+	private boolean admin;
 
 	public Appointment() {
 		super();
 	}
 
-	public Appointment(int id, Account account, Event event, Type type) {
+	public Appointment(int id, Account account, Event event, boolean attending, boolean admin) {
 		super();
 		this.id = id;
 		this.account = account;
 		this.event = event;
-		this.type = type;
+		this.attending = attending;
+		this.admin = admin;
 	}
 
 	public int getId() {
@@ -81,12 +77,22 @@ public class Appointment{
 		this.event = event;
 	}
 
-	public Type getType() {
-		return type;
+	public boolean isAttending() {
+		return attending;
 	}
 
-	public void setType(Type type) {
-		this.type = type;
+	public void setAttending(boolean attending) {
+		this.attending = attending;
 	}
+
+	public boolean isAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(boolean admin) {
+		this.admin = admin;
+	}
+
+	
 
 }

@@ -26,11 +26,12 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 
 	@Override
-	public Appointment createAppointment(Account account, Event event, Type type) {
+	public Appointment createAppointment(Account account, Event event, boolean attending, boolean admin) {
 		Appointment appointment = new Appointment();
 		appointment.setAccount(account);
 		appointment.setEvent(event);
-		appointment.setType(type);
+		appointment.setAttending(attending);
+		appointment.setAdmin(admin);
 		appointment = ar.save(appointment);
 		return appointment;
 	}
@@ -49,14 +50,27 @@ public class AppointmentServiceImpl implements AppointmentService {
 
 	@Override
 	public Set<Appointment> getAppointmentsByAccountAndType(Account account, Type type) {
-		Set<Appointment> appointments = ar.findByAccountAndType(account, type);
-		return appointments;
+		if(type.equals(Type.MEMBER)) {
+			Set<Appointment> appointments = ar.findByAccountAndAttending(account, true);
+			return appointments;
+		}else if(type.equals(Type.ADMIN)) {
+			Set<Appointment> appointments = ar.findByAccountAndAdmin(account, true);
+			return appointments;
+		}
+		return null;
+		
 	}
 
 	@Override
 	public Set<Appointment> getAppointmentsByEventAndType(Event event, Type type) {
-		Set<Appointment> appointments = ar.findByEventAndType(event, type);
-		return appointments;
+		if(type.equals(Type.MEMBER)) {
+			Set<Appointment> appointments = ar.findByEventAndAttending(event, true);
+			return appointments;
+		}else if(type.equals(Type.ADMIN)) {
+			Set<Appointment> appointments = ar.findByEventAndAdmin(event, true);
+			return appointments;
+		}
+		return null;
 	}
 
 	@Override
@@ -76,9 +90,10 @@ public class AppointmentServiceImpl implements AppointmentService {
 	}
 	
 	@Override
-	public Set<Appointment> getAppointmentsByAccountAndEvent(Account account, Event event){
-		Set<Appointment> appointments = ar.findByAccountAndEvent(account, event);
-		return appointments;
+	public Appointment getAppointmentByAccountAndEvent(Account account, Event event){
+		Appointment appointment = ar.findByAccountAndEvent(account, event);
+		return appointment;
+
 	}
 	
 	@Override
