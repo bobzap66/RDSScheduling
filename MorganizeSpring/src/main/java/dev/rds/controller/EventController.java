@@ -149,5 +149,12 @@ public class EventController {
 		return false;
 		
 	}
+	
+	@RequestMapping(value = "/events/{e_id}/appointments", method = RequestMethod.GET)
+	public Set<Appointment> getAppointmentsByEvent(@PathVariable int e_id){
+		Event event = es.getEventById(e_id);
+		Set<Appointment> appointments = apts.getAppointmentsByEvent(event);
+		return appointments;
+	}
 
 }
