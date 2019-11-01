@@ -60,6 +60,7 @@ public class EventController {
 		Appointment appt = apts.getAppointmentByAccountAndEvent(account, event);
 		if(appt != null) {
 			appt.setAttending(false);
+
 		}
 		return;
 	}
@@ -93,7 +94,7 @@ public class EventController {
 	public Set<Event> getAllEventsByTag(@RequestParam(required = false) String tag)
 	{
 		Set<Event> events;
-		if(tag != null && tag != "")
+		if(tag != null)
 		{
 			Tag tag2 = ts.getTagByTag(tag);
 			events = es.getEventsByTag(tag2);

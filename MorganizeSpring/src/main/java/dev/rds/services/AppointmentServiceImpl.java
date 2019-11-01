@@ -93,6 +93,13 @@ public class AppointmentServiceImpl implements AppointmentService {
 	public Appointment getAppointmentByAccountAndEvent(Account account, Event event){
 		Appointment appointment = ar.findByAccountAndEvent(account, event);
 		return appointment;
+
+	}
+	
+	@Override
+	public Set<Appointment> getAppointmentsByAccountAndEventAndType(Account account, Event event, Type type){
+		Set<Appointment> appointments = ar.findByAccountAndEventAndType(account, event, type);
+		return appointments;
 	}
 
 }

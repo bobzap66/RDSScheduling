@@ -35,12 +35,15 @@ public class OrganizationServiceImpl implements OrganizationService{
 				//If the tag doesn't doesn't exist in the database, 
 				//remove the tag from the set of tags attached to the event
 				// and add the tag returned by the database
-				if(ts.getTagByTag(tag.getTag()) == null) {
+				if(ts.getTagByTag(tag.getTag()) == null)
+				{
 					tag = ts.createTag(tag);
 					newTags.add(tag);
+					tag.getOrganizations().add(organization);
 				} else {
 					tag = ts.getTagByTag(tag.getTag());
 					newTags.add(tag);
+					tag.getOrganizations().add(organization);
 				}
 			}
 			organization.setTags(newTags);
@@ -68,9 +71,11 @@ public class OrganizationServiceImpl implements OrganizationService{
 				if(ts.getTagByTag(tag.getTag()) == null) {
 					tag = ts.createTag(tag);
 					newTags.add(tag);
+					tag.getOrganizations().add(organization);
 				} else {
 					tag = ts.getTagByTag(tag.getTag());
 					newTags.add(tag);
+					tag.getOrganizations().add(organization);
 				}
 			}
 		}

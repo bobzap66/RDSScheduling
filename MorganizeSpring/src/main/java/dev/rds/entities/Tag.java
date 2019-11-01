@@ -1,5 +1,6 @@
 package dev.rds.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -50,7 +51,8 @@ public class Tag {
 
 	public Tag() {
 		super();
-		// TODO Auto-generated constructor stub
+		organizations = new HashSet<Organization>();
+		events = new HashSet<Event>();
 	}
 
 	public Tag(int id, String tag, Set<Event> events, Set<Organization> organizations) {

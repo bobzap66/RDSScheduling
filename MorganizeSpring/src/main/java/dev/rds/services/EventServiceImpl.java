@@ -119,7 +119,9 @@ public class EventServiceImpl implements EventService{
 			event.setTags(newTags);
 		}
 		event = er.save(event);
+
 		apts.createAppointment(account, event, false, true);
+
 		return event;
 	}
 	
