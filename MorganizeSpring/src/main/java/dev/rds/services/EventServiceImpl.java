@@ -120,6 +120,7 @@ public class EventServiceImpl implements EventService{
 		}
 		event = er.save(event);
 		apts.createAppointment(account, event, Type.ADMIN);
+		event = er.findById(event.getId()).orElse(null);
 		return event;
 	}
 	
