@@ -73,8 +73,9 @@ public class AccountServiceImpl implements AccountService {
 
 
 	@Override
-	public Account getAccountById(int id) {
-		Account account = ar.findById(id).orElse(null);
+	public Account getAccountById(int id)
+  {
+		Account account = ar.findById(id);
 		return account;
 	}
 

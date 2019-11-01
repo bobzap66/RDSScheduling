@@ -10,4 +10,5 @@ import dev.rds.entities.Account;
 public interface AccountRepository extends CrudRepository<Account, Integer> {
 	
 	Account findByUsernameIgnoreCase(String username);
+	Account findById(int id);
 }

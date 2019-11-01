@@ -53,13 +53,15 @@ public class EventController {
 	@RequestMapping(value = "/events/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public void deleteEvent(@PathVariable int id, @RequestBody Account account) {
-		if(account == null || as.getAccountById(account.getId()) != null) {
+		if(account != null) {
+			account = as.getAccountById(account.getId()); 
+		}else{
 			return;
 		}
 		Event event = es.getEventById(id);
-		Set<Appointment> appts = apts.getAppointmentsByAccountAndEvent(account, event);
-		if(appts == null || appts.size() < 1) {
-			appts.forEach((appt) -> apts.deleteAppointment(appt));
+		Set<Appointment> appts = apts.getAppointmentsByAccountAndEventAndType(account, event, Type.MEMBER);
+		if(appts != null && appts.size() > 0) {
+			appts.forEach((appt) -> {apts.deleteAppointment(appt);});
 		}
 		return;
 	}
