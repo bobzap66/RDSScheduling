@@ -159,7 +159,7 @@ public class Event
 	public String toString() {
 		return "Event [id=" + id + ", name=" + name + ", startdate=" + startdate + ", enddate=" + enddate
 				+ ", description=" + description + ", maxattendees=" + maxattendees + ", location=" + location
-				+ ", organization=" + organization + ", appointments=" + appointments + ", tags=" + tags + "]";
+				+ ", organization=" + organization +  "]";
 	}
 
 }

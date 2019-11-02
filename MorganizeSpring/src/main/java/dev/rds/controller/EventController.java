@@ -167,6 +167,7 @@ public class EventController {
 		}
 		
 		Appointment appt = apts.getAppointmentByAccountAndEvent(account, event);
+		System.out.println(appt);
 		if(appt != null) {
 			if(appt.isAdmin()) {
 				appt.setAttending(false);
