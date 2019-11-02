@@ -111,9 +111,11 @@ public class EventServiceImpl implements EventService{
 				if(ts.getTagByTag(tag.getTag()) == null) {
 					tag = ts.createTag(tag);
 					newTags.add(tag);
+					tag.getEvents().add(event);
 				} else {
 					tag = ts.getTagByTag(tag.getTag());
 					newTags.add(tag);
+					tag.getEvents().add(event);
 				}
 			}
 			event.setTags(newTags);

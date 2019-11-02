@@ -95,10 +95,7 @@ public class AppointmentServiceImpl implements AppointmentService {
 		return appointment;
 
 	}
-<<<<<<< HEAD
-	
-=======
->>>>>>> branch 'dev' of https://github.com/bobzap66/RDSScheduling.git
+
 
 
 }
