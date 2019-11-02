@@ -57,6 +57,7 @@ public class EventController {
 			return;
 		}
 		Event event = es.getEventById(id);
+		
 		Appointment appt = apts.getAppointmentByAccountAndEvent(account, event);
 		if(appt != null) {
 			appt.setAttending(false);
@@ -156,5 +157,27 @@ public class EventController {
 		Set<Appointment> appointments = apts.getAppointmentsByEvent(event);
 		return appointments;
 	}
+	
+	@RequestMapping(value = "/events/{e_id}/appointments/{u_id}", method = RequestMethod.DELETE)
+	public void unregisterFromEvent(@PathVariable int e_id, @PathVariable int u_id) {
+		Event event = es.getEventById(e_id);
+		Account account = as.getAccountById(u_id);
+		if(event == null || account == null) {
+			return;
+		}
+		
+		Appointment appt = apts.getAppointmentByAccountAndEvent(account, event);
+		if(appt != null) {
+			if(appt.isAdmin()) {
+				appt.setAttending(false);
+				apts.updateAppointment(appt);
+			}else {
+				apts.deleteAppointment(appt);
+			}
+			
+		}
+		return;
+	}
+	
 
 }
