@@ -21,6 +21,12 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 		property = "id")
 public class Appointment{
 
+	@Override
+	public String toString() {
+		return "Appointment [id=" + id + ", account=" + account + ", event=" + event + ", attending=" + attending
+				+ ", admin=" + admin + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "appt_id")

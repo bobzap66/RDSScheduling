@@ -107,8 +107,7 @@ public class Organization
 
 	@Override
 	public String toString() {
-		return "Orginization [id=" + id + ", name=" + name + ", description=" + description + ", tags=" + tags
-				+ ", events=" + events + ", memberships=" + memberships + "]";
+		return "Orginization [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}
 	
 	
