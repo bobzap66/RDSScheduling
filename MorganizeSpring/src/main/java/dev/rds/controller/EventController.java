@@ -29,6 +29,7 @@ import dev.rds.services.TagService;
 @CrossOrigin
 public class EventController {
 
+	
 	@Autowired
 	EventService es;
 	
@@ -47,6 +48,7 @@ public class EventController {
 	public Event updateEvent(@RequestBody Event event, @PathVariable int id) {
 		event.setId(id);
 		event = es.updateEvent(event);
+		
 		return event;
 	}
 	
