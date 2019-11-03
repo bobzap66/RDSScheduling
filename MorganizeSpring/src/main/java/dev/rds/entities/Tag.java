@@ -35,14 +35,14 @@ public class Tag {
 	@Column(name = "tag")
 	private String tag;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "event_tag",
 	joinColumns = {@JoinColumn(name = "t_id")},
 	inverseJoinColumns = {@JoinColumn(name = "e_id")})
 	@JsonIgnore
 	private Set<Event> events;
 	
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "organization_tag",
 	joinColumns = {@JoinColumn(name = "t_id")},
 	inverseJoinColumns = {@JoinColumn(name = "o_id")})
