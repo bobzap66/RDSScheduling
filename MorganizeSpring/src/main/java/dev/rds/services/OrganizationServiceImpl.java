@@ -78,6 +78,7 @@ public class OrganizationServiceImpl implements OrganizationService{
 					tag.getOrganizations().add(organization);
 				}
 			}
+			organization.setTags(newTags);
 		}
 		organization = or.save(organization);
 		return organization;

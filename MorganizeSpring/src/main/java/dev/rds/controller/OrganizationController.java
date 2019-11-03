@@ -153,4 +153,18 @@ public class OrganizationController {
 		return memberships;
 	}
 	
+	@RequestMapping(value = "/organizations/{o_id}/members/{u_id}", method = RequestMethod.DELETE)
+	public void leaveOrganization(@PathVariable int o_id, @PathVariable int u_id) {
+		Account account = as.getAccountById(u_id);
+		Organization organization = os.getOrganizationById(o_id);
+		if(account == null || organization == null) {
+			return;
+		}
+		Membership membership = ms.getMembershipByOrganizationAndAccount(organization, account);
+		if(membership != null) {
+			ms.deleteMembership(membership);
+		}
+		return;
+	}
+	
 }
