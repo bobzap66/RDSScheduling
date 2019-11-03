@@ -70,14 +70,19 @@ public class EventServiceImpl implements EventService{
 				//remove the tag from the set of tags attached to the event
 				// and add the tag returned by the database
 				if(ts.getTagByTag(tag.getTag()) == null) {
-					tag = ts.createTag(tag);
-					tags.remove(tag);
+					Tag temp = ts.createTag(tag);
+					newTags.add(temp);
+					temp.getEvents().add(actual);
+				}
+				else
+				{
+					tag = ts.getTagByTag(tag.getTag());
 					newTags.add(tag);
+					tag.getEvents().add(actual);
 				}
 			}
-			event.setTags(newTags);
+			actual.setTags(newTags);
 		}
-		event = er.save(event);
 		event = er.save(actual);
 		return event;
 	}
