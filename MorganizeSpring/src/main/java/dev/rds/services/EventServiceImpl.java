@@ -79,7 +79,9 @@ public class EventServiceImpl implements EventService{
 				{
 					tag = ts.getTagByTag(tag.getTag());
 					newTags.add(tag);
-					tag.getEvents().add(actual);
+					if(!tag.getEvents().contains(actual)) {
+						tag.getEvents().add(actual);
+					}
 				}
 			}
 			actual.setTags(newTags);
