@@ -48,10 +48,10 @@ class MembershipServiceTest {
 	@Rollback
 	void createMembershipTest() {
 		Account account = as.getAccountById(1012);
-		Organization organization = os.getOrganizationById(3003);
+		Organization organization = os.getOrganizationById(3052);
 		Membership membership = ms.createMembership(account, organization, Type.MEMBER);
 		boolean result = false;
-		if(("Robert Deniro".equals(membership.getAccount().getName()))&&(membership.getType() == Type.MEMBER) && ("Flag Football Squad".equals(membership.getOrganization().getName()))) {
+		if(("Robert Deniro".equals(membership.getAccount().getName()))&&(membership.getType() == Type.MEMBER) && ("Try hard org".equals(membership.getOrganization().getName()))) {
 			result = true;
 		}
 		assertEquals(true, result);
@@ -76,7 +76,7 @@ class MembershipServiceTest {
 	@Test
 	@Rollback
 	void getAccountsByOrganizationAndMemberTest() {
-		Organization organization = this.os.getOrganizationById(3004);
+		Organization organization = this.os.getOrganizationById(3003);
 		Set<Account> accounts = this.ms.getMembershipsByOrganizationAndType(organization, Type.MEMBER);
 		Iterator<Account> itr = accounts.iterator(); 
 		boolean result = false;
@@ -91,7 +91,7 @@ class MembershipServiceTest {
 	@Test
 	@Rollback
 	void getAccountsByOrganizationAndAdminTest() {
-		Organization organization = this.os.getOrganizationById(3004);
+		Organization organization = this.os.getOrganizationById(3005);
 		Set<Account> accounts = this.ms.getMembershipsByOrganizationAndType(organization, Type.ADMIN);
 		Iterator<Account> itr = accounts.iterator(); 
 		boolean result = false;

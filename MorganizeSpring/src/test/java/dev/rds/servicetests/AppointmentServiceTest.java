@@ -44,7 +44,7 @@ class AppointmentServiceTest {
 	@Rollback
 	void createAppointment() {
 		Account a = as.getAccountById(1012);
-		Event e = es.getEventById(2007);
+		Event e = es.getEventById(2092);
 		Appointment appt = apptService.createAppointment(a, e, true, false);
 		assertEquals(a.getId(), appt.getAccount().getId());
 	}
