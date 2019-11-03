@@ -75,7 +75,9 @@ public class OrganizationServiceImpl implements OrganizationService{
 				} else {
 					tag = ts.getTagByTag(tag.getTag());
 					newTags.add(tag);
-					tag.getOrganizations().add(organization);
+					if(!tag.getOrganizations().contains(organization)) {
+						tag.getOrganizations().add(organization);
+					}
 				}
 			}
 			organization.setTags(newTags);
