@@ -29,6 +29,7 @@ import dev.rds.services.TagService;
 @CrossOrigin
 public class EventController {
 
+	
 	@Autowired
 	EventService es;
 	

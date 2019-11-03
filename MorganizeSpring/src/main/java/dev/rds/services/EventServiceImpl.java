@@ -63,7 +63,8 @@ public class EventServiceImpl implements EventService{
 			actual.setLocation(event.getLocation());
 		}
 		Set<Tag> tags = event.getTags();
-		Set<Tag> newTags = new HashSet<Tag>();
+		Set<Tag> newTags = new HashSet<Tag>(); 
+		
 		if(tags != null) {
 			for(Tag tag : tags) {
 				//If the tag doesn't doesn't exist in the database, 
