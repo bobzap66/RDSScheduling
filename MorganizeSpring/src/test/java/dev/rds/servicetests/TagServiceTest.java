@@ -77,7 +77,6 @@ class TagServiceTest {
 	@Test
 	void searchTagsTest() {
 		Set<Tag> tags = ts.getTagsByTag("Flowers");
-		System.out.println(tags);
 	}
 
 }
